@@ -1,5 +1,5 @@
 import { Poppins } from "next/font/google";
-import Header from "./Header/Header";
+import Header from "./header/Header";
 
 const poppins = Poppins({ subsets: ["latin"], weight: ["400", "500", "600"] });
 
