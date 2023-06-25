@@ -4,16 +4,19 @@ interface IDropdownItemProps {
   imageSrc: string;
   label: string;
   handleChange: (newValue: string) => void;
+  closeDropdown: () => void;
 }
 
 export default function DropdownItem({
   imageSrc,
   label,
   handleChange,
+  closeDropdown,
 }: IDropdownItemProps) {
   function handleClick(e: FormEvent) {
     e.preventDefault();
     handleChange(label);
+    closeDropdown();
   }
   return (
     <li className="w-full">

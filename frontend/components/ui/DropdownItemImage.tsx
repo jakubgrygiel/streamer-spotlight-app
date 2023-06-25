@@ -7,6 +7,7 @@ interface IDropdownItemImageProps {
   width: number;
   circle: boolean;
   handleChange: (newValue: string) => void;
+  closeDropdown: () => void;
 }
 
 export default function DropdownItemImage({
@@ -16,10 +17,12 @@ export default function DropdownItemImage({
   width,
   circle,
   handleChange,
+  closeDropdown,
 }: IDropdownItemImageProps) {
   function handleClick(e: FormEvent) {
     e.preventDefault();
     handleChange(label);
+    closeDropdown();
   }
   return (
     <li className="flex justify-center w-full">

@@ -1,3 +1,4 @@
+import useDropdown from "@/hooks/useDropdown";
 import Dropdown from "../ui/Dropdown";
 import DropdownItemImage from "../ui/DropdownItemImage";
 
@@ -32,11 +33,15 @@ export default function DropdownBg({
   hasError,
   handleChange,
 }: IDropdownBgProps) {
+  const { isOpen, toggleIsOpen, closeDropdown } = useDropdown();
+
   return (
     <Dropdown
       label="Profile background"
       placeholder="image"
       value={value}
+      isOpen={isOpen}
+      toggleIsOpen={toggleIsOpen}
       hasError={hasError}
     >
       <ul className="grid grid-cols-3 gap-2 w-full ">
@@ -47,6 +52,7 @@ export default function DropdownBg({
             height={7}
             width={10}
             circle={false}
+            closeDropdown={closeDropdown}
             handleChange={handleChange}
           />
         ))}

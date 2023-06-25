@@ -1,3 +1,4 @@
+import useDropdown from "@/hooks/useDropdown";
 import Dropdown from "../ui/Dropdown";
 import DropdownItemImage from "../ui/DropdownItemImage";
 
@@ -32,11 +33,15 @@ export default function DropdownAvatar({
   hasError,
   handleChange,
 }: IDropdownAvatarProps) {
+  const { isOpen, toggleIsOpen, closeDropdown } = useDropdown();
+
   return (
     <Dropdown
       label="Profile avatar"
       placeholder="avatar"
       value={value}
+      isOpen={isOpen}
+      toggleIsOpen={toggleIsOpen}
       hasError={hasError}
     >
       <ul className="grid grid-cols-3 gap-2 w-full">
@@ -47,6 +52,7 @@ export default function DropdownAvatar({
             height={10}
             width={10}
             circle={true}
+            closeDropdown={closeDropdown}
             handleChange={handleChange}
           />
         ))}
