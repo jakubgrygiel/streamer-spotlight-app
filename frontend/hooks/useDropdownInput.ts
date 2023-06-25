@@ -1,10 +1,10 @@
 import { useState } from "react";
 
-export default function useInput() {
+export default function useDropdownInput() {
   const [value, setValue] = useState("");
   const [isTouched, setIsTouched] = useState(false);
 
-  const isInvalid = value.trim() === "";
+  const isInvalid = value === "";
 
   const hasError = isInvalid && isTouched;
 

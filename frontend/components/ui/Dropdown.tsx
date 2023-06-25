@@ -2,18 +2,16 @@ import { FormEvent, ReactNode, useState } from "react";
 import DropdownList from "./DropdownList";
 
 interface IDropdownProps {
-  //   id: string;
   label: string;
-  placeholder: string;
-  //   value: string;
+  placeholder: "avatar" | "image" | "platform";
+  value: string;
   hasError: boolean;
-  //   handleChange: (value: string) => void;
-  //   handleBlur: () => void;
   children: ReactNode;
 }
 
 export default function Dropdown({
   label,
+  value,
   placeholder,
   hasError,
   children,
@@ -32,8 +30,37 @@ export default function Dropdown({
           hasError && "border-[var(--red)]"
         } transition-colors hover:border-[var(--text-secondary)]`}
       >
-        <span>Choose {placeholder}</span>
-        <img src="assets/icons/icon-arrow-down.svg" alt="" />
+        <span className={`${value !== "" && "text-[var(--text-main)]"}`}>
+          {placeholder === "platform" &&
+            (value === "" ? (
+              `Choose ${placeholder}`
+            ) : (
+              <img src={`/assets/icons/icon-dropdown-${value}.svg`} />
+            ))}
+          {placeholder === "avatar" &&
+            (value === "" ? (
+              `Choose ${placeholder}`
+            ) : (
+              <img
+                src={`/assets/images/${value}.webp`}
+                className="h-6 rounded-full"
+              />
+            ))}
+          {placeholder === "image" &&
+            (value === "" ? (
+              `Choose ${placeholder}`
+            ) : (
+              <img
+                src={`/assets/images/${value}.webp`}
+                className="h-6 rounded"
+              />
+            ))}
+        </span>
+        <img
+          src="assets/icons/icon-arrow-down.svg"
+          alt=""
+          className={` transition-transform ${dropdownIsOpen && "rotate-180"}`}
+        />
       </button>
       {dropdownIsOpen && <DropdownList>{children}</DropdownList>}
     </div>

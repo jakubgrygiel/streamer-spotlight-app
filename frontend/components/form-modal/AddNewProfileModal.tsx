@@ -7,6 +7,8 @@ import ModalWrapper from "./ModalWrapper";
 import DropdownAvatar from "./DropdownAvatar";
 import DropdownBg from "./DropdownBg";
 import DropdownPlatform from "./DropdownPlatform";
+import useDropdownInput from "@/hooks/useDropdownInput";
+import Image from "next/image";
 
 export default function AddNewProfileModal() {
   const {
@@ -21,20 +23,56 @@ export default function AddNewProfileModal() {
     handleChange: handleChangeDescription,
     handleBlur: handleBlurDescription,
   } = useInput();
+  const {
+    value: avatarValue,
+    hasError: avatarHasError,
+    handleChange: handleChangeAvatar,
+    handleBlur: handleBlurAvatar,
+  } = useDropdownInput();
+  const {
+    value: imageValue,
+    hasError: imageHasError,
+    handleChange: handleChangeImage,
+    handleBlur: handleBlurImage,
+  } = useDropdownInput();
+  const {
+    value: platformValue,
+    hasError: platformHasError,
+    handleChange: handleChangePlatform,
+    handleBlur: handleBlurPlatform,
+  } = useDropdownInput();
 
   function submitForm() {
     handleBlurName();
     handleBlurDescription();
+    handleBlurAvatar();
+    handleBlurImage();
+    handleBlurPlatform();
   }
 
   return (
     <ModalWrapper>
       <div className="w-full max-w-[400px] bg-[var(--bg-secondary)] rounded-xl">
         <div className="relative flex justify-between items-center h-[100px] w-full p-6 bg-[var(--bg-light2)] rounded-t-xl">
-          <h2 className="font-semibold text-xl text-white">Add New Profile</h2>
+          {imageValue && (
+            <>
+              <Image
+                src={`/assets/images/${imageValue}.webp`}
+                alt="background image"
+                fill
+                className=" rounded-t-xl"
+              />
+              <div className="absolute inset-0 bg-[var(--bg-image-backdrop)]"></div>
+            </>
+          )}
+          <h2 className="relative font-semibold text-xl text-white">
+            Add New Profile
+          </h2>
           <div className="relative h-[52px] w-[100px]">
             <img
-              src="assets/images/user-loading.webp"
+              src={`assets/images/${
+                avatarValue === "" ? "user-loading" : avatarValue
+              }.webp`}
               alt=""
               className="absolute h-[100px] w-[100px] rounded-full"
             />
@@ -50,9 +88,17 @@ export default function AddNewProfileModal() {
             handleChange={handleChangeName}
             handleBlur={handleBlurName}
           />
-          <div className="flex justify-between items-center gap-3 w-full">
-            <DropdownAvatar />
-            <DropdownBg />
+          <div className="z-20 flex justify-between items-center gap-3 w-full">
+            <DropdownAvatar
+              value={avatarValue}
+              hasError={avatarHasError}
+              handleChange={handleChangeAvatar}
+            />
+            <DropdownBg
+              value={imageValue}
+              hasError={imageHasError}
+              handleChange={handleChangeImage}
+            />
           </div>
           <TextareaInput
             id="description"
@@ -63,7 +109,11 @@ export default function AddNewProfileModal() {
             handleChange={handleChangeDescription}
             handleBlur={handleBlurDescription}
           />
-          <DropdownPlatform />
+          <DropdownPlatform
+            value={platformValue}
+            hasError={platformHasError}
+            handleChange={handleChangePlatform}
+          />
           <div className="flex justify-between gap-3 mt-2">
             <CreateProfileBtn clickFn={submitForm} />
             <CancelBtn />
