@@ -3,12 +3,14 @@ import TextInput from "../ui/TextInput";
 import TextareaInput from "../ui/TextareaInput";
 import CancelBtn from "./CancelBtn";
 import CreateProfileBtn from "./CreateProfileBtn";
-import ModalWrapper from "./ModalWrapper";
 import DropdownAvatar from "./DropdownAvatar";
 import DropdownBg from "./DropdownBg";
 import DropdownPlatform from "./DropdownPlatform";
 import useDropdownInput from "@/hooks/useDropdownInput";
 import Image from "next/image";
+import ModalWrapper from "../layout/modals/ModalWrapper";
+import { UiCtx } from "@/context/ui-context";
+import { useContext } from "react";
 
 export default function AddNewProfileModal() {
   const {
@@ -52,7 +54,7 @@ export default function AddNewProfileModal() {
 
   return (
     <ModalWrapper>
-      <div className="w-full max-w-[400px] bg-[var(--bg-secondary)] rounded-xl">
+      <div className="w-[400px] bg-[var(--bg-secondary)] rounded-xl">
         <div className="relative flex justify-between items-center h-[100px] w-full p-6 bg-[var(--bg-light2)] rounded-t-xl">
           {imageValue && (
             <>

@@ -47,6 +47,7 @@ export default function DropdownAvatar({
       <ul className="grid grid-cols-3 gap-2 w-full">
         {avatars.map((item) => (
           <DropdownItemImage
+            key={item.label}
             imageSrc={item.imageSrc}
             label={item.label}
             height={10}

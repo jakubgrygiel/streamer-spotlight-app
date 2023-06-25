@@ -38,7 +38,7 @@ export default function DropdownBg({
   return (
     <Dropdown
       label="Profile background"
-      placeholder="image"
+      placeholder="background"
       value={value}
       isOpen={isOpen}
       toggleIsOpen={toggleIsOpen}
@@ -47,6 +47,7 @@ export default function DropdownBg({
       <ul className="grid grid-cols-3 gap-2 w-full ">
         {images.map((item) => (
           <DropdownItemImage
+            key={item.label}
             imageSrc={item.imageSrc}
             label={item.label}
             height={7}

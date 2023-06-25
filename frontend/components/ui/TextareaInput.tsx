@@ -30,7 +30,7 @@ export default function TextareaInput({
           handleChange(e.target.value)
         }
         onBlur={handleBlur}
-        className={` h-32 w-full p-3 font-medium text-[var(--text-main)] bg-[var(--bg-secondary)] border border-[var(--bg-very-light)] rounded-lg placeholder:text-[var(--text-dark)] resize-none ${
+        className={` h-32 w-full px-3 py-2 font-medium text-[var(--text-main)] bg-[var(--bg-secondary)] border border-[var(--bg-very-light)] rounded-lg placeholder:text-[var(--text-dark)] resize-none ${
           hasError && "border-[var(--red)]"
         } transition-colors hover:border-[var(--text-secondary)]`}
       ></textarea>

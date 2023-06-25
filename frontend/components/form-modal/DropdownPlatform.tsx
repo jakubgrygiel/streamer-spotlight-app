@@ -30,6 +30,7 @@ export default function DropdownPlatform({
       <ul className="flex flex-col gap-1 w-full">
         {platforms.map((item) => (
           <DropdownItem
+            key={item}
             imageSrc={`icons/icon-dropdown-${item}.svg`}
             label={item}
             handleChange={handleChange}

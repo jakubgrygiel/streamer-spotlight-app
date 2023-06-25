@@ -3,7 +3,7 @@ import DropdownList from "./DropdownList";
 
 interface IDropdownProps {
   label: string;
-  placeholder: "avatar" | "image" | "platform";
+  placeholder: "avatar" | "background" | "platform";
   value: string;
   hasError: boolean;
   isOpen: boolean;
@@ -50,7 +50,7 @@ export default function Dropdown({
                 alt="avatar"
               />
             ))}
-          {placeholder === "image" &&
+          {placeholder === "background" &&
             (value === "" ? (
               `Choose ${placeholder}`
             ) : (

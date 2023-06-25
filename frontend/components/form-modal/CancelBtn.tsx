@@ -1,7 +1,9 @@
 import Button from "@/components/ui/Button";
-import { FormEvent } from "react";
+import { UiCtx } from "@/context/ui-context";
+import { FormEvent, useContext } from "react";
 
 export default function CancelBtn() {
-  function handleClick() {}
-  return <Button text="Cancel" isMain={false} clickFn={handleClick} />;
+  const { closeModal } = useContext(UiCtx);
+
+  return <Button text="Cancel" isMain={false} clickFn={closeModal} />;
 }
