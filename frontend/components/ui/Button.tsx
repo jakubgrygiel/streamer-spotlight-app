@@ -1,3 +1,5 @@
+import { FormEvent } from "react";
+
 interface IButtonProps {
   clickFn: () => void;
   text: string;
@@ -5,12 +7,14 @@ interface IButtonProps {
 }
 
 export default function Button({ clickFn, text, isMain }: IButtonProps) {
-  function handleClick() {
+  function handleClick(e: FormEvent) {
+    e.preventDefault();
     clickFn();
   }
   return (
     <button
-      className={`h-10 px-4 rounded-lg font-semibold ${
+      onClick={handleClick}
+      className={`h-10 w-full px-4 rounded-lg font-semibold ${
         isMain ? "text-white bg-[var(--blue)]" : "bg-[var(--bg-light)]"
       } transition-opacity hover:opacity-70`}
     >

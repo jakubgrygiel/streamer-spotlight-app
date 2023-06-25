@@ -13,7 +13,9 @@ export default function Header() {
         <Link href="/">
           <img src="assets/icons/logo.svg" alt="app logo" />
         </Link>
-        {isHomePage ? <AddNewProfileBtn /> : <GoBackLink />}
+        <div className=" w-44">
+          {isHomePage ? <AddNewProfileBtn /> : <GoBackLink />}
+        </div>
       </nav>
     </header>
   );

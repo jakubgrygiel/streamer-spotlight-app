@@ -1,5 +1,6 @@
 import { Poppins } from "next/font/google";
 import Header from "./header/Header";
+import ModalsWrapper from "../form-modal/ModalsWrapper";
 
 const poppins = Poppins({ subsets: ["latin"], weight: ["400", "500", "600"] });
 
@@ -16,6 +17,7 @@ export default function Layout({ children }: ILayoutProps) {
           {children}
         </div>
       </main>
+      <ModalsWrapper />
     </div>
   );
 }
