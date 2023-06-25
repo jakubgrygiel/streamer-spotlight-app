@@ -1,4 +1,5 @@
-import { FormEvent } from "react";
+import { FormEvent, ReactNode, useState } from "react";
+import DropdownList from "./DropdownList";
 
 interface IDropdownProps {
   //   id: string;
@@ -8,18 +9,22 @@ interface IDropdownProps {
   hasError: boolean;
   //   handleChange: (value: string) => void;
   //   handleBlur: () => void;
+  children: ReactNode;
 }
 
 export default function Dropdown({
   label,
   placeholder,
   hasError,
+  children,
 }: IDropdownProps) {
+  const [dropdownIsOpen, setDropdownIsOpen] = useState(false);
   function handleClick(e: FormEvent) {
     e.preventDefault();
+    setDropdownIsOpen((prevState) => !prevState);
   }
   return (
-    <div className="flex flex-col gap-2 w-full">
+    <div className="z-10 relative flex flex-col gap-2 w-full">
       <span className="w-full font-semibold text-sm">{label}</span>
       <button
         onClick={handleClick}
@@ -30,6 +35,7 @@ export default function Dropdown({
         <span>Choose {placeholder}</span>
         <img src="assets/icons/icon-arrow-down.svg" alt="" />
       </button>
+      {dropdownIsOpen && <DropdownList>{children}</DropdownList>}
     </div>
   );
 }

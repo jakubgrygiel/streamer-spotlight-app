@@ -1,10 +1,12 @@
 import useInput from "@/hooks/useInput";
-import Dropdown from "../ui/Dropdown";
 import TextInput from "../ui/TextInput";
 import TextareaInput from "../ui/TextareaInput";
 import CancelBtn from "./CancelBtn";
 import CreateProfileBtn from "./CreateProfileBtn";
 import ModalWrapper from "./ModalWrapper";
+import DropdownAvatar from "./DropdownAvatar";
+import DropdownBg from "./DropdownBg";
+import DropdownPlatform from "./DropdownPlatform";
 
 export default function AddNewProfileModal() {
   const {
@@ -49,16 +51,8 @@ export default function AddNewProfileModal() {
             handleBlur={handleBlurName}
           />
           <div className="flex justify-between items-center gap-3 w-full">
-            <Dropdown
-              label="Profile avatar"
-              placeholder="avatar"
-              hasError={false}
-            />
-            <Dropdown
-              label="Profile background"
-              placeholder="image"
-              hasError={false}
-            />
+            <DropdownAvatar />
+            <DropdownBg />
           </div>
           <TextareaInput
             id="description"
@@ -69,7 +63,7 @@ export default function AddNewProfileModal() {
             handleChange={handleChangeDescription}
             handleBlur={handleBlurDescription}
           />
-          <Dropdown label="Platform" placeholder="platform" hasError={false} />
+          <DropdownPlatform />
           <div className="flex justify-between gap-3 mt-2">
             <CreateProfileBtn clickFn={submitForm} />
             <CancelBtn />
