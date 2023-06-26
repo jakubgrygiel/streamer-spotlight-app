@@ -10,7 +10,7 @@ export default function ModalTitleWrapper({
   background,
 }: IModalTitleWrapperProps) {
   return (
-    <div className="relative flex justify-between items-center h-[100px] w-full p-6 bg-[var(--bg-light2)] rounded-t-xl sm:h-16">
+    <div className="z-40 relative flex justify-between items-center h-[100px] w-full p-6 bg-[var(--bg-light2)] rounded-t-xl sm:h-16">
       {background && (
         <>
           <Image

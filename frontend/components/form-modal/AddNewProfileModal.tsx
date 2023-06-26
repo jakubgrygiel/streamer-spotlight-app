@@ -54,14 +54,14 @@ export default function AddNewProfileModal() {
     <ModalWrapper>
       <div
         className="w-[400px] sm:w-full max-h-full bg-[var(--bg-secondary)]
-       rounded-xl "
+       rounded-xl border border-[var(--bg-light)]"
       >
         <ModalTitleWrapper avatar={avatarValue} background={imageValue} />
         <form
-          className="flex h-scroll-full-desktop sm:h-scroll-full-mobile 
-        w-full p-6 overflow-hidden"
+          className="relative flex h-scroll-full-desktop sm:h-scroll-full-mobile 
+        w-full p-6 py-2 overflow-hidden"
         >
-          <div className="flex flex-col justify-between gap-4 w-full overflow-hidden overflow-y-auto">
+          <div className="flex flex-col justify-between gap-4 w-full py-4 overflow-hidden overflow-y-auto">
             <TextInput
               id="name"
               label="Name"
@@ -106,6 +106,8 @@ export default function AddNewProfileModal() {
               <CancelBtn />
             </div>
           </div>
+          <div className="z-20 absolute top-2 w-full gradient-100-0 h-4 pointer-events-none"></div>
+          <div className="z-20 absolute bottom-2 w-full gradient-0-100 h-4 pointer-events-none"></div>
         </form>
       </div>
     </ModalWrapper>

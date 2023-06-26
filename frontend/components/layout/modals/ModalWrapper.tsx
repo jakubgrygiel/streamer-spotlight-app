@@ -26,7 +26,7 @@ export default function ModalWrapper({ children }: IModalWrapperProps) {
         onClick={closeModal}
         className="absolute inset-0 bg-[var(--bg-modal-backdrop)] animate-fade animate-duration-500"
       ></div>
-      <div className="flex justify-center items-center w-full animate-fade animate-duration-800">
+      <div className="flex justify-center items-center sm:w-full animate-fade animate-duration-800">
         {children}
       </div>
     </div>

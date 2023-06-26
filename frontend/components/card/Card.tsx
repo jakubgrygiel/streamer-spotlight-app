@@ -1,41 +1,27 @@
 import { IData } from "@/data/dummy-data";
-import Image from "next/image";
 import PlatformLogo from "./PlatformLogo";
-import Rating from "./Rating";
+import Rating from "../ui/Rating";
 import OpenProfileBtn from "./OpenProfileBtn";
+import useObserver from "@/hooks/useObserver";
+import { useRef } from "react";
+import UserAvatarWithBg from "../ui/UserAvatarWithBg";
 
 interface ICardProps {
   data: IData;
 }
 
 export default function Card({ data }: ICardProps) {
-  return (
-    <div className="flex flex-col justify-between w-full bg-[var(--bg-secondary)] rounded-xl">
-      <div className="relative flex justify-start items-end gap-3 h-[100px] w-full px-6 py-2 bg-[var(--bg-light2)] rounded-t-xl">
-        {data && (
-          <>
-            <Image
-              src={`/assets/images/${data.background}.webp`}
-              alt="background image"
-              fill
-              className=" rounded-t-xl"
-              sizes="(max-width: 768px) 100vw, (max-width: 1000px) 50vw, 33vw"
-            />
-            <div className="absolute inset-0 bg-[var(--bg-image-backdrop)]"></div>
-          </>
-        )}
+  const cardRef = useRef<HTMLDivElement | null>(null);
+  const { isVisible } = useObserver(cardRef);
 
-        <div className="relative h-[52px] w-[100px]">
-          <img
-            src={`assets/images/${data ? data.avatar : "user-loading"}.webp`}
-            alt=""
-            className="absolute h-[100px] w-[100px] rounded-full"
-          />
-        </div>
-        <h2 className="relative font-semibold text-base text-white">
-          {data.name}
-        </h2>
-      </div>
+  return (
+    <div
+      ref={cardRef}
+      className={`flex flex-col justify-between w-full bg-[var(--bg-secondary)] rounded-xl  border border-[var(--bg-light)] transition-opacity duration-300 ${
+        isVisible ? "opacity-100" : "opacity-0"
+      }`}
+    >
+      <UserAvatarWithBg data={data} />
       <div className="flex flex-col justify-between  h-[220px] gap-3 p-6 pt-3">
         <div className="flex flex-col gap-3">
           <div className="flex items-center gap-3 ml-[112px]">
