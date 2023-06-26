@@ -3,6 +3,18 @@
 @tailwind utilities;
 
 @layer utilities {
+  .h-full-dyn {
+    height: 100dvh;
+  }
+  .h-scroll-full-desktop {
+    max-height: calc(100dvh - 148px);
+  }
+  .h-scroll-full-mobile {
+    max-height: calc(100dvh - 88px);
+  }
+  .h-scroll-full {
+    max-height: calc(100dvh - 136px);
+  }
 }
 
 :root {

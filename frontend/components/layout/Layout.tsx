@@ -15,7 +15,7 @@ export default function Layout({ children }: ILayoutProps) {
   return (
     <div className={`${poppins.className}`}>
       <Header />
-      <main className="flex justify-center items-center px-12 w-full">
+      <main className="flex justify-center items-center px-12 w-full md:px-3">
         <div className="flex justify-between items-center w-full max-w-[1440px]">
           {children}
         </div>

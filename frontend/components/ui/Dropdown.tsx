@@ -32,7 +32,7 @@ export default function Dropdown({
         <span className={`${value !== "" && "text-[var(--text-main)]"}`}>
           {placeholder === "platform" &&
             (value === "" ? (
-              `Choose ${placeholder}`
+              `Choose`
             ) : (
               <img
                 src={`/assets/icons/icon-dropdown-${value}.svg`}
@@ -42,7 +42,7 @@ export default function Dropdown({
             ))}
           {placeholder === "avatar" &&
             (value === "" ? (
-              `Choose ${placeholder}`
+              `Choose`
             ) : (
               <img
                 src={`/assets/images/${value}.webp`}
@@ -52,7 +52,7 @@ export default function Dropdown({
             ))}
           {placeholder === "background" &&
             (value === "" ? (
-              `Choose ${placeholder}`
+              `Choose`
             ) : (
               <img
                 src={`/assets/images/${value}.webp`}

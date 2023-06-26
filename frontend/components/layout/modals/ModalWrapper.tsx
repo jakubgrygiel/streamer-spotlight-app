@@ -21,12 +21,14 @@ export default function ModalWrapper({ children }: IModalWrapperProps) {
   }, []);
 
   return (
-    <div className="absolute inset-0 flex justify-center items-center p-3">
+    <div className="absolute inset-0 flex justify-center items-center p-6 sm:p-3">
       <div
         onClick={closeModal}
         className="absolute inset-0 bg-[var(--bg-modal-backdrop)] animate-fade animate-duration-500"
       ></div>
-      <div className="animate-fade animate-duration-800">{children}</div>
+      <div className="flex justify-center items-center w-full animate-fade animate-duration-800">
+        {children}
+      </div>
     </div>
   );
 }

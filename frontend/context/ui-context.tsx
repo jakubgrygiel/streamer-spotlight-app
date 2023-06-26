@@ -21,10 +21,14 @@ export function UiCtxProvider({ children }: IUiCtxProviderProps) {
 
   function openModal() {
     setAddNewProfileModal(true);
+    const body = document.querySelector("body");
+    body!.style.overflow = "hidden";
   }
 
   function closeModal() {
     setAddNewProfileModal(false);
+    const body = document.querySelector("body");
+    body!.style.overflow = "auto";
   }
 
   const ctx: IUiCtx = {

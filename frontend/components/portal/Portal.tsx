@@ -16,7 +16,7 @@ export default function Portal({ children }: IPortalProps) {
 
   return mounted && ref.current && children
     ? createPortal(
-        <div className="z-50 fixed inset-0 flex justify-center items-center">
+        <div className="z-50 fixed inset-0 h-full-dyn flex justify-center items-center">
           {children}
         </div>,
         ref.current

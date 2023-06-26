@@ -1,7 +1,13 @@
-export default function OpenProfileBtn() {
+import Link from "next/link";
+
+interface IOpenProfileBtnProps {
+  id: string;
+}
+
+export default function OpenProfileBtn({ id }: IOpenProfileBtnProps) {
   return (
-    <button aria-label="profile details">
+    <Link href={`/${id}`} aria-label="profile details">
       <img src="assets/icons/icon-arrow-right.svg" alt="open profile icon" />
-    </button>
+    </Link>
   );
 }

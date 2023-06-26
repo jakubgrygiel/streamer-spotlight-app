@@ -37,7 +37,7 @@ export default function DropdownItemImage({
           alt={label}
           className={`h-${height} w-${width} transition-colors ${
             circle ? "rounded-full" : "rounded"
-          }`}
+          } sm:w-auto sm:h-auto sm:aspect-square`}
         />
       </button>
     </li>

@@ -7,8 +7,8 @@ import DropdownAvatar from "./DropdownAvatar";
 import DropdownBg from "./DropdownBg";
 import DropdownPlatform from "./DropdownPlatform";
 import useDropdownInput from "@/hooks/useDropdownInput";
-import Image from "next/image";
 import ModalWrapper from "../layout/modals/ModalWrapper";
+import ModalTitleWrapper from "./ModalTitleWrapper";
 
 export default function AddNewProfileModal() {
   const {
@@ -52,71 +52,59 @@ export default function AddNewProfileModal() {
 
   return (
     <ModalWrapper>
-      <div className="w-[400px] bg-[var(--bg-secondary)] rounded-xl">
-        <div className="relative flex justify-between items-center h-[100px] w-full p-6 bg-[var(--bg-light2)] rounded-t-xl">
-          {imageValue && (
-            <>
-              <Image
-                src={`/assets/images/${imageValue}.webp`}
-                alt="background image"
-                fill
-                className=" rounded-t-xl"
+      <div
+        className="w-[400px] sm:w-full max-h-full bg-[var(--bg-secondary)]
+       rounded-xl "
+      >
+        <ModalTitleWrapper avatar={avatarValue} background={imageValue} />
+        <form
+          className="flex h-scroll-full-desktop sm:h-scroll-full-mobile 
+        w-full p-6 overflow-hidden"
+        >
+          <div className="flex flex-col justify-between gap-4 w-full overflow-hidden overflow-y-auto">
+            <TextInput
+              id="name"
+              label="Name"
+              value={nameValue}
+              placeholder="e.g. streamer1234"
+              hasError={nameHasError}
+              handleChange={handleChangeName}
+              handleBlur={handleBlurName}
+            />
+            <div
+              className="z-20 flex justify-between items-center 
+            gap-3 w-full"
+            >
+              <DropdownAvatar
+                value={avatarValue}
+                hasError={avatarHasError}
+                handleChange={handleChangeAvatar}
               />
-              <div className="absolute inset-0 bg-[var(--bg-image-backdrop)]"></div>
-            </>
-          )}
-          <h2 className="relative font-semibold text-xl text-white">
-            Add New Profile
-          </h2>
-          <div className="relative h-[52px] w-[100px]">
-            <img
-              src={`assets/images/${
-                avatarValue === "" ? "user-loading" : avatarValue
-              }.webp`}
-              alt=""
-              className="absolute h-[100px] w-[100px] rounded-full"
+              <DropdownBg
+                value={imageValue}
+                hasError={imageHasError}
+                handleChange={handleChangeImage}
+              />
+            </div>
+            <TextareaInput
+              id="description"
+              label="Description"
+              value={descriptionValue}
+              placeholder="e.g. I'm a crazy streamer who interacts 
+              with fans with great enthusiasm..."
+              hasError={descriptionHasError}
+              handleChange={handleChangeDescription}
+              handleBlur={handleBlurDescription}
             />
-          </div>
-        </div>
-        <form className="flex flex-col gap-4 w-full p-6">
-          <TextInput
-            id="name"
-            label="Name"
-            value={nameValue}
-            placeholder="e.g. streamer1234"
-            hasError={nameHasError}
-            handleChange={handleChangeName}
-            handleBlur={handleBlurName}
-          />
-          <div className="z-20 flex justify-between items-center gap-3 w-full">
-            <DropdownAvatar
-              value={avatarValue}
-              hasError={avatarHasError}
-              handleChange={handleChangeAvatar}
+            <DropdownPlatform
+              value={platformValue}
+              hasError={platformHasError}
+              handleChange={handleChangePlatform}
             />
-            <DropdownBg
-              value={imageValue}
-              hasError={imageHasError}
-              handleChange={handleChangeImage}
-            />
-          </div>
-          <TextareaInput
-            id="description"
-            label="Description"
-            value={descriptionValue}
-            placeholder="e.g. I'm a crazy streamer who interacts with fans with great enthusiasm..."
-            hasError={descriptionHasError}
-            handleChange={handleChangeDescription}
-            handleBlur={handleBlurDescription}
-          />
-          <DropdownPlatform
-            value={platformValue}
-            hasError={platformHasError}
-            handleChange={handleChangePlatform}
-          />
-          <div className="flex justify-between gap-3 mt-2">
-            <CreateProfileBtn clickFn={submitForm} />
-            <CancelBtn />
+            <div className="flex justify-between gap-3 mt-2">
+              <CreateProfileBtn clickFn={submitForm} />
+              <CancelBtn />
+            </div>
           </div>
         </form>
       </div>

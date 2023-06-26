@@ -50,7 +50,7 @@ export default function DropdownBg({
             key={item.label}
             imageSrc={item.imageSrc}
             label={item.label}
-            height={7}
+            height={10}
             width={10}
             circle={false}
             closeDropdown={closeDropdown}
