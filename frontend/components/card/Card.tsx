@@ -1,5 +1,8 @@
 import { IData } from "@/data/dummy-data";
 import Image from "next/image";
+import PlatformLogo from "./PlatformLogo";
+import Rating from "./Rating";
+import OpenProfileBtn from "./OpenProfileBtn";
 
 interface ICardProps {
   data: IData;
@@ -7,7 +10,7 @@ interface ICardProps {
 
 export default function Card({ data }: ICardProps) {
   return (
-    <div className="w-[400px] bg-[var(--bg-secondary)] rounded-xl">
+    <div className="w-full bg-[var(--bg-secondary)] rounded-xl">
       <div className="relative flex justify-start items-end gap-3 h-[100px] w-full px-6 py-2 bg-[var(--bg-light2)] rounded-t-xl">
         {data && (
           <>
@@ -16,6 +19,7 @@ export default function Card({ data }: ICardProps) {
               alt="background image"
               fill
               className=" rounded-t-xl"
+              sizes="(max-width: 768px) 100vw, (max-width: 1000px) 50vw, 33vw"
             />
             <div className="absolute inset-0 bg-[var(--bg-image-backdrop)]"></div>
           </>
@@ -29,16 +33,25 @@ export default function Card({ data }: ICardProps) {
           />
         </div>
         <h2 className="relative font-semibold text-base text-white">
-          streamer123
+          {data.name}
         </h2>
       </div>
-      <div className="flex flex-col gap-3 p-6 pt-3">
-        <span className="ml-[112px]">@streamer123</span>
-        <p>
-          I'm a crazy streamer who interacts with fans with great enthusiasm. I
-          love creating dynamic and energetic...
-        </p>
-        <div>Rate</div>
+      <div className="flex flex-col justify-between gap-3 p-6 pt-3">
+        <div className="flex flex-col gap-3">
+          <div className="flex items-center gap-3 ml-[112px]">
+            <PlatformLogo platform={data.platform} />
+            <span className="text-[var(--text-dark)] text-xs font-medium">
+              @{data.name}
+            </span>
+          </div>
+          <p className=" mt-3 text-[var(--text-secondary)]">
+            {data.description.slice(0, 90)}...
+          </p>
+        </div>
+        <div className="flex justify-between">
+          <Rating id={data.id} rate={data.rate} />
+          <OpenProfileBtn />
+        </div>
       </div>
     </div>
   );

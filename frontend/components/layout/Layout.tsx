@@ -2,7 +2,10 @@ import { Poppins } from "next/font/google";
 import ModalsWrapper from "./modals/ModalsWrapper";
 import Header from "./header/Header";
 
-const poppins = Poppins({ subsets: ["latin"], weight: ["400", "500", "600"] });
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
 
 interface ILayoutProps {
   children: React.ReactNode;

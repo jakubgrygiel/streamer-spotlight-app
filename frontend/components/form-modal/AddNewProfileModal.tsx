@@ -9,8 +9,6 @@ import DropdownPlatform from "./DropdownPlatform";
 import useDropdownInput from "@/hooks/useDropdownInput";
 import Image from "next/image";
 import ModalWrapper from "../layout/modals/ModalWrapper";
-import { UiCtx } from "@/context/ui-context";
-import { useContext } from "react";
 
 export default function AddNewProfileModal() {
   const {

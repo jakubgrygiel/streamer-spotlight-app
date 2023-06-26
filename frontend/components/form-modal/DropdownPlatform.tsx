@@ -2,8 +2,15 @@ import { FormEvent, useState } from "react";
 import Dropdown from "../ui/Dropdown";
 import DropdownItem from "../ui/DropdownItem";
 import useDropdown from "@/hooks/useDropdown";
+import { TPlatform } from "@/data/dummy-data";
 
-const platforms = ["youtube", "tiktok", "twitch", "rumble", "kick"];
+const platforms: TPlatform[] = [
+  "youtube",
+  "tiktok",
+  "twitch",
+  "rumble",
+  "kick",
+];
 
 interface IDropdownPlatformProps {
   value: string;
