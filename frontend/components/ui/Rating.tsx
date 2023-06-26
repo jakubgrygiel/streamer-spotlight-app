@@ -1,6 +1,6 @@
 interface IRatingProps {
-  id: string;
-  rate: number;
+  id?: string;
+  rate?: number;
 }
 
 export default function Rating({ id, rate }: IRatingProps) {
@@ -13,7 +13,13 @@ export default function Rating({ id, rate }: IRatingProps) {
           className=" h-6 w-6"
         />
       </button>
-      <span className="font-bold text-center w-8">{rate}</span>
+      {rate !== undefined ? (
+        <span className="font-bold text-center w-8 animate-fade animate-duration-800">
+          {rate}
+        </span>
+      ) : (
+        <span className="h-4 w-4 mx-2 bg-[var(--text-main)] rounded-lg animate-pulse"></span>
+      )}
       <button aria-label="dislike" className=" h-6 w-6">
         <img
           src="assets/icons/icon-thumb-down.svg"
