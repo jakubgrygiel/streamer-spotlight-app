@@ -1,17 +1,30 @@
 import { Request, Response } from "express";
-import Streamer from "../models/streamer.model";
+import Streamer, { IStreamer } from "../models/streamer.model";
 
-export async function createStreamer(req: Request, res: Response) {
-  const newStreamer = new Streamer({
-    id: "gj3pvhpu80e0kzggr6jqo005",
+export async function getAllStreamers(req: Request, res: Response) {
+  // res.json(savedStreamer);
+}
+
+export async function addStreamer(req: Request, res: Response) {
+  const newStreamerData = {
     name: "CyberWarrior",
-    description:
-      "I'm a fearless streamer who dives headfirst into the virtual realm. Join me on thrilling gaming adventures filled with heart-pounding action, epic battles, and jaw-dropping moments. Together, we'll conquer every virtual challenge that comes our way!",
-    platform: "twitch",
+    description: "I'm a fearless streamer!",
     avatar: "user-1",
     background: "bg-1",
+    platform: "twitch",
     rate: 0,
-  });
-  const createdStreamer = await newStreamer.save();
-  res.json(createdStreamer);
+  };
+
+  const newStreamer = new Streamer(newStreamerData);
+  const savedStreamer = await newStreamer.save();
+
+  res.json(savedStreamer);
+}
+
+export async function getStreamer(req: Request, res: Response) {
+  // res.json(savedStreamer);
+}
+
+export async function updateStreamer(req: Request, res: Response) {
+  // res.json(savedStreamer);
 }

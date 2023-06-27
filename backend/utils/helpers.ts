@@ -7,7 +7,9 @@ export const wrapper = async (
 ) => {
   try {
     await callback(req, res);
-  } catch (error) {
-    return res.status(500).send(`Error: ${error.message}`);
+  } catch (error: any) {
+    return res
+      .status(500)
+      .send(`[ERROR] The operation failed: ${error.message}`);
   }
 };
