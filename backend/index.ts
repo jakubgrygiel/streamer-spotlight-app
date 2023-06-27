@@ -2,12 +2,14 @@ import express, { Express, Request, Response } from "express";
 import mongoose, { MongooseError } from "mongoose";
 import streamerRoutes from "./routes/streamers.routes";
 import { fillDatabaseIfEmpty } from "./utils/database";
+import cors from "cors";
 
 const PORT = 8000;
 const DB_URL = "mongodb://localhost:27017";
 
 const app: Express = express();
 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

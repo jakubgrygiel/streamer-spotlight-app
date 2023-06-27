@@ -1,4 +1,4 @@
-import { IData } from "@/data/dummy-data";
+import { IStreamer } from "@/types/data-types";
 import PlatformLogo from "./PlatformLogo";
 import Rating from "../ui/Rating";
 import OpenProfileBtn from "./OpenProfileBtn";
@@ -7,7 +7,7 @@ import { useRef } from "react";
 import UserAvatarWithBg from "../ui/UserAvatarWithBg";
 
 interface ICardProps {
-  data: IData;
+  data: IStreamer;
 }
 
 export default function Card({ data }: ICardProps) {
@@ -22,7 +22,7 @@ export default function Card({ data }: ICardProps) {
       }`}
     >
       <UserAvatarWithBg data={data} />
-      <div className="flex flex-col justify-between  h-[220px] gap-3 p-6 pt-3">
+      <div className="flex flex-col justify-between h-[220px] gap-3 p-6 pt-3">
         <div className="flex flex-col gap-3">
           <div className="flex items-center gap-3 ml-[112px]">
             <PlatformLogo platform={data.platform} />
@@ -35,8 +35,8 @@ export default function Card({ data }: ICardProps) {
           </p>
         </div>
         <div className="flex justify-between">
-          <Rating id={data.id} rate={data.rate} />
-          <OpenProfileBtn id={data.id} />
+          <Rating id={data._id} rate={data.rate} />
+          <OpenProfileBtn id={data._id} />
         </div>
       </div>
     </div>

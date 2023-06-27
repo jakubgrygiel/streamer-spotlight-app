@@ -9,8 +9,26 @@ import DropdownPlatform from "./DropdownPlatform";
 import useDropdownInput from "@/hooks/useDropdownInput";
 import ModalWrapper from "../layout/modals/ModalWrapper";
 import ModalTitleWrapper from "./ModalTitleWrapper";
+import axios from "axios";
+import { TPlatform } from "@/types/data-types";
+import { useContext } from "react";
+import { DataCtx } from "@/context/data-context";
+import { UiCtx } from "@/context/ui-context";
+
+const API_URL = "http://localhost:8000/streamers";
+
+interface IFormData {
+  name: string;
+  description: string;
+  avatar: string;
+  background: string;
+  platform: TPlatform;
+  rate: number;
+}
 
 export default function AddNewProfileModal() {
+  const { updateData } = useContext(DataCtx);
+  const { closeModal } = useContext(UiCtx);
   const {
     value: nameValue,
     hasError: nameHasError,
@@ -42,7 +60,30 @@ export default function AddNewProfileModal() {
     handleBlur: handleBlurPlatform,
   } = useDropdownInput();
 
-  function submitForm() {
+  async function submitForm() {
+    touchEveryInput();
+    const formIsValid =
+      !nameHasError &&
+      !descriptionHasError &&
+      !avatarHasError &&
+      !imageHasError &&
+      !platformHasError;
+    if (formIsValid) {
+      const formData: IFormData = {
+        name: nameValue,
+        description: descriptionValue,
+        avatar: avatarValue,
+        background: imageValue,
+        platform: platformValue as TPlatform,
+        rate: 0,
+      };
+      await axios.post(API_URL, formData);
+      updateData();
+      closeModal();
+    }
+  }
+
+  function touchEveryInput() {
     handleBlurName();
     handleBlurDescription();
     handleBlurAvatar();

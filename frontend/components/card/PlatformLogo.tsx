@@ -1,4 +1,4 @@
-import { TPlatform } from "@/data/dummy-data";
+import { TPlatform } from "@/types/data-types";
 
 interface IPlatformLogoProps {
   platform: TPlatform;

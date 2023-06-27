@@ -2,7 +2,7 @@ import { FormEvent, useState } from "react";
 import Dropdown from "../ui/Dropdown";
 import DropdownItem from "../ui/DropdownItem";
 import useDropdown from "@/hooks/useDropdown";
-import { TPlatform } from "@/data/dummy-data";
+import { TPlatform } from "@/types/data-types";
 
 const platforms: TPlatform[] = [
   "youtube",

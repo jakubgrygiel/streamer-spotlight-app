@@ -1,8 +1,8 @@
-import { IData } from "@/data/dummy-data";
+import { IStreamer } from "@/types/data-types";
 import Image from "next/image";
 
 interface IUserAvatarWithBgProps {
-  data?: IData;
+  data?: IStreamer;
 }
 
 export default function UserAvatarWithBg({ data }: IUserAvatarWithBgProps) {
@@ -13,8 +13,8 @@ export default function UserAvatarWithBg({ data }: IUserAvatarWithBgProps) {
           src={`/assets/images/${data.background}.webp`}
           alt="background image"
           fill
-          className=" rounded-t-xl animate-fade animate-duration-800"
-          sizes="(max-width: 768px) 100vw, (max-width: 1000px) 50vw, 33vw"
+          className=" rounded-t-xl animate-fade animate-duration-800 object-cover"
+          sizes="100vw"
         />
       ) : (
         <div className="absolute inset-0 bg-[var(--bg-light2)] rounded-t-xl animate-pulse"></div>
