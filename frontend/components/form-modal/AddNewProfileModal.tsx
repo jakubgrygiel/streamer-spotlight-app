@@ -9,12 +9,10 @@ import DropdownPlatform from "./DropdownPlatform";
 import useDropdownInput from "@/hooks/useDropdownInput";
 import ModalWrapper from "../layout/modals/ModalWrapper";
 import ModalTitleWrapper from "./ModalTitleWrapper";
-import axios from "axios";
 import { TPlatform } from "@/models/Streamer";
 import { useContext } from "react";
 import { DataCtx } from "@/context/data-context";
 import { UiCtx } from "@/context/ui-context";
-import API_URL from "@/services/API";
 import useSendData from "@/hooks/useSendData";
 
 interface IFormData {
@@ -32,30 +30,35 @@ export default function AddNewProfileModal() {
   const { sendData } = useSendData();
   const {
     value: nameValue,
+    isInvalid: nameIsInvalid,
     hasError: nameHasError,
     handleChange: handleChangeName,
     handleBlur: handleBlurName,
   } = useInput();
   const {
     value: descriptionValue,
+    isInvalid: descriptionIsInvalid,
     hasError: descriptionHasError,
     handleChange: handleChangeDescription,
     handleBlur: handleBlurDescription,
   } = useInput();
   const {
     value: avatarValue,
+    isInvalid: avatarIsInvalid,
     hasError: avatarHasError,
     handleChange: handleChangeAvatar,
     handleBlur: handleBlurAvatar,
   } = useDropdownInput();
   const {
     value: imageValue,
+    isInvalid: imageIsInvalid,
     hasError: imageHasError,
     handleChange: handleChangeImage,
     handleBlur: handleBlurImage,
   } = useDropdownInput();
   const {
     value: platformValue,
+    isInvalid: platformIsInvalid,
     hasError: platformHasError,
     handleChange: handleChangePlatform,
     handleBlur: handleBlurPlatform,
@@ -64,11 +67,11 @@ export default function AddNewProfileModal() {
   async function submitForm() {
     touchEveryInput();
     const formIsValid =
-      !nameHasError &&
-      !descriptionHasError &&
-      !avatarHasError &&
-      !imageHasError &&
-      !platformHasError;
+      !nameIsInvalid &&
+      !descriptionIsInvalid &&
+      !avatarIsInvalid &&
+      !imageIsInvalid &&
+      !platformIsInvalid;
     if (formIsValid) {
       const data = prepareData();
       await sendData(data);

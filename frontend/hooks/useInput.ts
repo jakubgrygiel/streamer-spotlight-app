@@ -16,5 +16,5 @@ export default function useInput() {
     setValue(newValue);
   }
 
-  return { value, hasError, handleBlur, handleChange };
+  return { value, hasError, isInvalid, handleBlur, handleChange };
 }

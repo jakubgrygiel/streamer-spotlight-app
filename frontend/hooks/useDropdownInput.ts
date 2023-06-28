@@ -16,5 +16,5 @@ export default function useDropdownInput() {
     setValue(newValue);
   }
 
-  return { value, hasError, handleBlur, handleChange };
+  return { value, isInvalid, hasError, handleBlur, handleChange };
 }
