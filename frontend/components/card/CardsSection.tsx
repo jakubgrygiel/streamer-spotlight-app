@@ -1,4 +1,4 @@
-import { IStreamer } from "@/types/types";
+import { IStreamer } from "@/models/Streamer";
 import Card from "./Card";
 import LoadingSection from "../ui/LoadingSection";
 import { useContext } from "react";

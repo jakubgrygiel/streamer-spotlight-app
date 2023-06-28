@@ -1,4 +1,4 @@
-import { IStreamer } from "@/types/types";
+import { IStreamer } from "@/models/Streamer";
 import useGetData from "@/hooks/useGetData";
 import { createContext } from "react";
 

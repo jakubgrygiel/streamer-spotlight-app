@@ -1,4 +1,4 @@
-import { IStreamer } from "@/types/types";
+import { IStreamer } from "@/models/Streamer";
 import PlatformLogo from "./PlatformLogo";
 import Rating from "../ui/Rating";
 import OpenProfileBtn from "./OpenProfileBtn";

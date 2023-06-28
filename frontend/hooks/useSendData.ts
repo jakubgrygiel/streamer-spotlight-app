@@ -1,14 +1,10 @@
+import API_URL from "@/services/API";
 import axios, { AxiosError } from "axios";
-import { useState } from "react";
 
-export default function useFetch(url: string, id?: string) {
-  const [data, setData] = useState();
-  const API_URL = id ? `${url}/${id}` : url;
-
-  async function getData() {
+export default function useSendData() {
+  async function sendData(data: any) {
     try {
-      const response = await axios.get(API_URL);
-      setData(response.data);
+      await axios.post(API_URL, data);
     } catch (error) {
       const err = error as AxiosError;
       if (err.response) {
@@ -20,5 +16,6 @@ export default function useFetch(url: string, id?: string) {
       }
     }
   }
-  return { data, getData };
+
+  return { sendData };
 }

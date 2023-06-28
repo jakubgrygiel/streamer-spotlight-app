@@ -6,17 +6,18 @@ import {
   updateStreamer,
 } from "../controllers/streamer.controller";
 import { wrapper } from "../utils/helpers";
+import { streamer } from "../middleware/streamer.middleware";
 
 const router = Router();
 
 router.get("/", (req: Request, res: Response) =>
   wrapper(req, res, getAllStreamers)
 );
-router.post("/", (req: Request, res: Response) =>
+router.post("/", [streamer.empty], (req: Request, res: Response) =>
   wrapper(req, res, addStreamer)
 );
 
-router.get("/:streamerId", (req: Request, res: Response) =>
+router.get("/:streamerId", [streamer.exists], (req: Request, res: Response) =>
   wrapper(req, res, getStreamer)
 );
 router.put("/:streamerId", (req: Request, res: Response) =>

@@ -1,5 +1,6 @@
+import { Collection, FilterQuery, Document } from "mongoose";
 import Streamer from "../models/streamer.model";
-import { IStreamerClient, IStreamerDB } from "../types/types";
+import { IStreamerClient } from "../types/types";
 import dummyStreamerData from "./dummyData";
 
 async function isDatabaseEmpty() {
@@ -30,4 +31,12 @@ export function prepareDataForClient(data: any) {
     rate: data.rate,
   };
   return responseData;
+}
+
+export async function documentMissing<T>(filter: FilterQuery<T>) {
+  try {
+    return (await Streamer.countDocuments(filter)) === 0;
+  } catch (err) {
+    return true;
+  }
 }

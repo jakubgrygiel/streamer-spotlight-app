@@ -8,7 +8,7 @@ export async function getAllStreamers(req: Request, res: Response) {
   const responseData = streamers.map((streamer) =>
     prepareDataForClient(streamer)
   );
-
+  // await Streamer.deleteMany({ name: { $exists: false } });
   res.status(200).json(responseData);
 }
 

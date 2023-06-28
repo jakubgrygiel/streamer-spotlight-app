@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import useFetch from "./useFetch";
-import { IStreamer } from "@/types/types";
+import { IStreamer } from "@/models/Streamer";
 import API_URL from "@/services/API";
 
 export default function useGetDataById(id: string) {

@@ -1,4 +1,4 @@
-import { TPlatform } from "@/types/types";
+import { TPlatform } from "@/models/Streamer";
 
 interface IPlatformLogoProps {
   platform: TPlatform;
