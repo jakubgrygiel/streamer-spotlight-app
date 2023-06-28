@@ -8,7 +8,6 @@ export async function getAllStreamers(req: Request, res: Response) {
   const responseData = streamers.map((streamer) =>
     prepareDataForClient(streamer)
   );
-  // await Streamer.deleteMany({ name: { $exists: false } });
   res.status(200).json(responseData);
 }
 
@@ -37,14 +36,21 @@ export async function getStreamer(req: Request, res: Response) {
 
 export async function updateStreamer(req: Request, res: Response) {
   const { streamerId } = req.params;
+  const { body } = req;
 
-  const streamer = await Streamer.findByIdAndUpdate(streamerId, req.body);
+  const votesValue = body.type === "upvote" ? 1 : -1;
 
-  if (!streamer) {
-    return res
-      .status(404)
-      .json({ message: "Streamer with this id does not exist" });
-  }
-
-  res.status(200).json({ message: "Streamer updated" });
+  Streamer.findByIdAndUpdate(
+    streamerId,
+    { $inc: { votes: votesValue } },
+    { new: true }
+  ).then((updatedStreamer) => {
+    if (updatedStreamer) {
+      res.status(200).json(updatedStreamer);
+    } else {
+      return res
+        .status(404)
+        .json({ message: "Streamer with this id does not exist" });
+    }
+  });
 }

@@ -23,7 +23,7 @@ interface IFormData {
   avatar: string;
   background: string;
   platform: TPlatform;
-  rate: number;
+  votes: number;
 }
 
 export default function AddNewProfileModal() {
@@ -84,7 +84,7 @@ export default function AddNewProfileModal() {
       avatar: avatarValue,
       background: imageValue,
       platform: platformValue as TPlatform,
-      rate: 0,
+      votes: 0,
     };
     return formData;
   }

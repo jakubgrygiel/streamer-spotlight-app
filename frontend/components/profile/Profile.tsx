@@ -13,12 +13,13 @@ interface IProfileProps {
 }
 
 export default function Profile({ data, updateData }: IProfileProps) {
-  function handleRate(val: -1 | 1) {
+  function handleVote(val: -1 | 1) {
     if (data) {
-      const rate = data.rate + val;
-      updateData("rate", rate, data.id);
+      const rate = data.votes + val;
+      updateData("votes", rate, data.id);
     }
   }
+  console.log(data);
 
   return (
     <section className="w-full mb-6 bg-[var(--bg-secondary)] rounded-xl border border-[var(--bg-light)]">
@@ -58,7 +59,7 @@ export default function Profile({ data, updateData }: IProfileProps) {
             ) : (
               <span></span>
             )}
-            <Rating id={data?.id} rate={data?.rate} rateFunc={handleRate} />
+            <Rating id={data?.id} votes={data?.votes} voteFunc={handleVote} />
           </div>
         </div>
       </div>

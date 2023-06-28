@@ -1,5 +1,3 @@
-import { ObjectId } from "mongoose";
-
 export type TPlatform = "youtube" | "tiktok" | "twitch" | "rumble" | "kick";
 
 export interface IStreamer {
@@ -8,7 +6,7 @@ export interface IStreamer {
   avatar: string;
   background: string;
   platform: TPlatform;
-  rate: number;
+  votes: number;
 }
 
 export interface IStreamerDB {
@@ -19,7 +17,7 @@ export interface IStreamerDB {
   avatar: string;
   background: string;
   platform: TPlatform;
-  rate: number;
+  votes: number;
 }
 
 export interface IStreamerClient {
@@ -29,5 +27,5 @@ export interface IStreamerClient {
   avatar: string;
   background: string;
   platform: TPlatform;
-  rate: number;
+  votes: number;
 }

@@ -16,10 +16,10 @@ export default function Card({ data }: ICardProps) {
   const { isVisible } = useObserver(cardRef);
   const { updateData } = useContext(DataCtx);
 
-  function handleRate(val: -1 | 1, id?: string) {
+  function handleVote(val: -1 | 1, id?: string) {
     if (data && id) {
-      const rate = data.rate + val;
-      updateData("rate", rate, id);
+      const rate = data.votes + val;
+      updateData("votes", rate, id);
     }
   }
 
@@ -44,7 +44,7 @@ export default function Card({ data }: ICardProps) {
           </p>
         </div>
         <div className="flex justify-between">
-          <Rating id={data.id} rate={data.rate} rateFunc={handleRate} />
+          <Rating id={data.id} votes={data.votes} voteFunc={handleVote} />
           <OpenProfileBtn id={data.id} />
         </div>
       </div>

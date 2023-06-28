@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import useFetch from "./useFetch";
 import { IStreamer } from "@/models/Streamer";
 import API_URL from "@/services/API";
+import { updateVote } from "@/utils/crud";
 
 export default function useDataById(id: string) {
   const { data, sendRequest } = useFetch(API_URL);
@@ -28,7 +29,15 @@ export default function useDataById(id: string) {
       let streamerCopy = { ...streamer };
       streamerCopy[key] = newValue;
       setStreamer(streamerCopy);
-      sendRequest("put", id, streamerCopy);
+
+      if (key === "votes") {
+        updateVote(
+          streamer[key] as number,
+          streamerCopy[key] as number,
+          id,
+          sendRequest
+        );
+      }
     }
   }
 

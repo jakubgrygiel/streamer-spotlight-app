@@ -8,7 +8,7 @@ const streamerSchema = new Schema<IStreamer>({
   avatar: { type: String, required: true },
   background: { type: String, required: true },
   platform: { type: String, required: true },
-  rate: { type: Number, required: true },
+  votes: { type: Number, required: true },
 });
 
 const Streamer = model("Streamer", streamerSchema);

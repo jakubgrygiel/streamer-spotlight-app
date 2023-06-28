@@ -1,5 +1,5 @@
 import express, { Express, Request, Response } from "express";
-import mongoose, { MongooseError } from "mongoose";
+import mongoose from "mongoose";
 import streamerRoutes from "./routes/streamers.routes";
 import { fillDatabaseIfEmpty } from "./utils/database";
 import cors from "cors";

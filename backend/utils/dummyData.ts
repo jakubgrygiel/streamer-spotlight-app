@@ -8,7 +8,7 @@ const dummyStreamerData: IStreamer[] = [
     platform: "twitch",
     avatar: "user-1",
     background: "bg-1",
-    rate: 14,
+    votes: 14,
   },
   {
     name: "GamingGuru",
@@ -17,7 +17,7 @@ const dummyStreamerData: IStreamer[] = [
     platform: "youtube",
     avatar: "user-2",
     background: "bg-2",
-    rate: 23,
+    votes: 23,
   },
   {
     name: "TikTokTornado",
@@ -26,7 +26,7 @@ const dummyStreamerData: IStreamer[] = [
     platform: "tiktok",
     avatar: "user-3",
     background: "bg-3",
-    rate: 41,
+    votes: 41,
   },
   {
     name: "KickMaster",
@@ -35,7 +35,7 @@ const dummyStreamerData: IStreamer[] = [
     platform: "kick",
     avatar: "user-4",
     background: "bg-4",
-    rate: 5,
+    votes: 5,
   },
   {
     name: "RumbleRocker",
@@ -44,7 +44,7 @@ const dummyStreamerData: IStreamer[] = [
     platform: "rumble",
     avatar: "user-5",
     background: "bg-5",
-    rate: 65,
+    votes: 65,
   },
   {
     name: "PixelPirate",
@@ -53,7 +53,7 @@ const dummyStreamerData: IStreamer[] = [
     platform: "twitch",
     avatar: "user-6",
     background: "bg-6",
-    rate: -2,
+    votes: -2,
   },
   {
     name: "VloggingVortex",
@@ -62,7 +62,7 @@ const dummyStreamerData: IStreamer[] = [
     platform: "youtube",
     avatar: "user-7",
     background: "bg-7",
-    rate: 45,
+    votes: 45,
   },
   {
     name: "TikTokThriller",
@@ -71,7 +71,7 @@ const dummyStreamerData: IStreamer[] = [
     platform: "tiktok",
     avatar: "user-8",
     background: "bg-8",
-    rate: 89,
+    votes: 89,
   },
   {
     name: "KickinItWithKara",
@@ -80,7 +80,7 @@ const dummyStreamerData: IStreamer[] = [
     platform: "kick",
     avatar: "user-9",
     background: "bg-9",
-    rate: 48,
+    votes: 48,
   },
   {
     name: "RumbleRacer",
@@ -89,7 +89,7 @@ const dummyStreamerData: IStreamer[] = [
     platform: "rumble",
     avatar: "user-10",
     background: "bg-10",
-    rate: 27,
+    votes: 27,
   },
   {
     name: "TechMaestro",
@@ -98,7 +98,7 @@ const dummyStreamerData: IStreamer[] = [
     platform: "twitch",
     avatar: "user-11",
     background: "bg-11",
-    rate: 39,
+    votes: 39,
   },
   {
     name: "ArtisticAce",
@@ -107,7 +107,7 @@ const dummyStreamerData: IStreamer[] = [
     platform: "youtube",
     avatar: "user-12",
     background: "bg-12",
-    rate: 73,
+    votes: 73,
   },
   {
     name: "ComedyConqueror",
@@ -116,7 +116,7 @@ const dummyStreamerData: IStreamer[] = [
     platform: "twitch",
     avatar: "user-1",
     background: "bg-6",
-    rate: 48,
+    votes: 48,
   },
   {
     name: "FitnessFrenzy",
@@ -125,7 +125,7 @@ const dummyStreamerData: IStreamer[] = [
     platform: "kick",
     avatar: "user-2",
     background: "bg-7",
-    rate: 52,
+    votes: 52,
   },
   {
     name: "MusicMaestro",
@@ -134,7 +134,7 @@ const dummyStreamerData: IStreamer[] = [
     platform: "twitch",
     avatar: "user-3",
     background: "bg-8",
-    rate: 8,
+    votes: 8,
   },
   {
     name: "FoodieFanatic",
@@ -143,7 +143,7 @@ const dummyStreamerData: IStreamer[] = [
     platform: "youtube",
     avatar: "user-4",
     background: "bg-9",
-    rate: 3,
+    votes: 3,
   },
   {
     name: "MindfulnessMaven",
@@ -152,7 +152,7 @@ const dummyStreamerData: IStreamer[] = [
     platform: "tiktok",
     avatar: "user-5",
     background: "bg-10",
-    rate: 18,
+    votes: 18,
   },
   {
     name: "FashionistaFlair",
@@ -161,7 +161,7 @@ const dummyStreamerData: IStreamer[] = [
     platform: "kick",
     avatar: "user-6",
     background: "bg-11",
-    rate: 3,
+    votes: 3,
   },
   {
     name: "PetPals",
@@ -170,7 +170,7 @@ const dummyStreamerData: IStreamer[] = [
     platform: "youtube",
     avatar: "user-7",
     background: "bg-12",
-    rate: 7,
+    votes: 7,
   },
   {
     name: "AdventureAddict",
@@ -179,7 +179,7 @@ const dummyStreamerData: IStreamer[] = [
     platform: "rumble",
     avatar: "user-8",
     background: "bg-4",
-    rate: 72,
+    votes: 72,
   },
 ];
 

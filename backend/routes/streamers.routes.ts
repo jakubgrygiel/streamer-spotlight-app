@@ -20,8 +20,10 @@ router.post("/", [streamer.empty], (req: Request, res: Response) =>
 router.get("/:streamerId", [streamer.exists], (req: Request, res: Response) =>
   wrapper(req, res, getStreamer)
 );
-router.put("/:streamerId", [streamer.exists], (req: Request, res: Response) =>
-  wrapper(req, res, updateStreamer)
+router.put(
+  "/:streamerId/vote",
+  [streamer.exists],
+  (req: Request, res: Response) => wrapper(req, res, updateStreamer)
 );
 
 export default router;

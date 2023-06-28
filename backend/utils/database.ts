@@ -1,4 +1,4 @@
-import { Collection, FilterQuery, Document } from "mongoose";
+import { FilterQuery } from "mongoose";
 import Streamer from "../models/streamer.model";
 import { IStreamerClient } from "../types/types";
 import dummyStreamerData from "./dummyData";
@@ -28,7 +28,7 @@ export function prepareDataForClient(data: any) {
     description: data.description,
     name: data.name,
     platform: data.platform,
-    rate: data.rate,
+    votes: data.votes,
   };
   return responseData;
 }
