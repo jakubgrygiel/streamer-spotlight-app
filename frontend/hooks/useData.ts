@@ -3,6 +3,7 @@ import useFetch from "./useFetch";
 import { IStreamer } from "@/models/Streamer";
 import API_URL from "@/services/API";
 import { updateVote } from "@/utils/crud";
+import { socket } from "@/pages/_app";
 
 export default function useData() {
   const { data, sendRequest } = useFetch(API_URL);
@@ -15,6 +16,10 @@ export default function useData() {
   useEffect(() => {
     setStreamers(data);
   }, [data]);
+
+  socket.on("data", (newData) => {
+    setStreamers(newData);
+  });
 
   function getData() {
     sendRequest("get");
