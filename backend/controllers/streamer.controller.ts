@@ -25,7 +25,9 @@ export async function getStreamer(req: Request, res: Response) {
   const streamer = await Streamer.findById(streamerId);
 
   if (!streamer) {
-    return res.status(404).json({ message: "Streamer not found" });
+    return res
+      .status(404)
+      .json({ message: "Streamer with this id does not exist" });
   }
 
   const responseData: IStreamerClient = prepareDataForClient(streamer);
@@ -35,19 +37,14 @@ export async function getStreamer(req: Request, res: Response) {
 
 export async function updateStreamer(req: Request, res: Response) {
   const { streamerId } = req.params;
-  const updatedStreamer = await Streamer.findByIdAndUpdate(
-    streamerId,
-    req.body,
-    {
-      new: true,
-    }
-  );
 
-  if (!updatedStreamer) {
-    return res.status(404).json({ message: "Streamer not found" });
+  const streamer = await Streamer.findByIdAndUpdate(streamerId, req.body);
+
+  if (!streamer) {
+    return res
+      .status(404)
+      .json({ message: "Streamer with this id does not exist" });
   }
 
-  const responseData: IStreamerClient = prepareDataForClient(updateStreamer);
-
-  res.status(200).json(responseData);
+  res.status(200).json({ message: "Streamer updated" });
 }

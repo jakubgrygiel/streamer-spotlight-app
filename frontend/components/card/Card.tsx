@@ -3,8 +3,9 @@ import PlatformLogo from "./PlatformLogo";
 import Rating from "../ui/Rating";
 import OpenProfileBtn from "./OpenProfileBtn";
 import useObserver from "@/hooks/useObserver";
-import { useRef } from "react";
+import { useContext, useRef } from "react";
 import UserAvatarWithBg from "../ui/UserAvatarWithBg";
+import { DataCtx } from "@/context/data-context";
 
 interface ICardProps {
   data: IStreamer;
@@ -13,6 +14,14 @@ interface ICardProps {
 export default function Card({ data }: ICardProps) {
   const cardRef = useRef<HTMLDivElement | null>(null);
   const { isVisible } = useObserver(cardRef);
+  const { updateData } = useContext(DataCtx);
+
+  function handleRate(val: -1 | 1, id?: string) {
+    if (data && id) {
+      const rate = data.rate + val;
+      updateData("rate", rate, id);
+    }
+  }
 
   return (
     <div
@@ -35,7 +44,7 @@ export default function Card({ data }: ICardProps) {
           </p>
         </div>
         <div className="flex justify-between">
-          <Rating id={data.id} rate={data.rate} />
+          <Rating id={data.id} rate={data.rate} rateFunc={handleRate} />
           <OpenProfileBtn id={data.id} />
         </div>
       </div>

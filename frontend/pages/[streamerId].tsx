@@ -1,20 +1,22 @@
 import Profile from "@/components/profile/Profile";
-import useGetDataById from "@/hooks/useGetDataById";
+import useDataById from "@/hooks/useDataById";
 import { useRouter } from "next/router";
 
 export default function ProfilePage() {
   const router = useRouter();
-  const { streamer } = useGetDataById(router.query.streamerId as string);
+  const { streamer, updateData } = useDataById(
+    router.query.streamerId as string
+  );
   if (!router.query.streamerId) {
     return (
       <>
-        <Profile />
+        <Profile updateData={updateData} />
       </>
     );
   }
   return (
     <>
-      <Profile data={streamer} />
+      <Profile data={streamer} updateData={updateData} />
     </>
   );
 }

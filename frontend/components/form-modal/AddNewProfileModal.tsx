@@ -27,7 +27,7 @@ interface IFormData {
 }
 
 export default function AddNewProfileModal() {
-  const { updateData } = useContext(DataCtx);
+  const { getData } = useContext(DataCtx);
   const { closeModal } = useContext(UiCtx);
   const { sendData } = useSendData();
   const {
@@ -72,7 +72,7 @@ export default function AddNewProfileModal() {
     if (formIsValid) {
       const data = prepareData();
       await sendData(data);
-      updateData();
+      getData(); // update data on the home page after submitting form
       closeModal();
     }
   }

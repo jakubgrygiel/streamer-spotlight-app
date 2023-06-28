@@ -20,7 +20,7 @@ router.post("/", [streamer.empty], (req: Request, res: Response) =>
 router.get("/:streamerId", [streamer.exists], (req: Request, res: Response) =>
   wrapper(req, res, getStreamer)
 );
-router.put("/:streamerId", (req: Request, res: Response) =>
+router.put("/:streamerId", [streamer.exists], (req: Request, res: Response) =>
   wrapper(req, res, updateStreamer)
 );
 
