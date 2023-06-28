@@ -1,4 +1,4 @@
-import { IStreamer } from "../models/streamer.model";
+import { IStreamer } from "../types/types";
 
 const dummyStreamerData: IStreamer[] = [
   {

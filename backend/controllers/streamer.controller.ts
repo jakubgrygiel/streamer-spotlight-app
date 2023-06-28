@@ -1,17 +1,23 @@
 import { Request, Response } from "express";
-import Streamer, { IStreamer } from "../models/streamer.model";
+import Streamer from "../models/streamer.model";
+import { IStreamerClient, IStreamerDB } from "../types/types";
+import { prepareDataForClient } from "../utils/database";
 
 export async function getAllStreamers(req: Request, res: Response) {
-  const streamers = await Streamer.find();
+  const streamers: IStreamerDB[] = await Streamer.find();
+  const responseData = streamers.map((streamer) =>
+    prepareDataForClient(streamer)
+  );
 
-  res.status(200).json(streamers);
+  res.status(200).json(responseData);
 }
 
 export async function addStreamer(req: Request, res: Response) {
   const newStreamer = new Streamer(req.body);
   const savedStreamer = await newStreamer.save();
-  console.log(req.body);
-  res.status(200).json(savedStreamer);
+  const responseData: IStreamerClient = prepareDataForClient(savedStreamer);
+
+  res.status(200).json(responseData);
 }
 
 export async function getStreamer(req: Request, res: Response) {
@@ -22,7 +28,9 @@ export async function getStreamer(req: Request, res: Response) {
     return res.status(404).json({ message: "Streamer not found" });
   }
 
-  res.status(200).json(streamer);
+  const responseData: IStreamerClient = prepareDataForClient(streamer);
+
+  res.status(200).json(responseData);
 }
 
 export async function updateStreamer(req: Request, res: Response) {
@@ -39,5 +47,7 @@ export async function updateStreamer(req: Request, res: Response) {
     return res.status(404).json({ message: "Streamer not found" });
   }
 
-  res.status(200).json(updatedStreamer);
+  const responseData: IStreamerClient = prepareDataForClient(updateStreamer);
+
+  res.status(200).json(responseData);
 }

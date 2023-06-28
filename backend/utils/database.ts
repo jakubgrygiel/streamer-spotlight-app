@@ -1,4 +1,5 @@
 import Streamer from "../models/streamer.model";
+import { IStreamerClient, IStreamerDB } from "../types/types";
 import dummyStreamerData from "./dummyData";
 
 async function isDatabaseEmpty() {
@@ -16,4 +17,17 @@ export async function fillDatabaseIfEmpty() {
   if (isEmpty) {
     await fillDatabaseWithDummyData();
   }
+}
+
+export function prepareDataForClient(data: any) {
+  const responseData: IStreamerClient = {
+    id: data._id.toString(),
+    avatar: data.avatar,
+    background: data.background,
+    description: data.description,
+    name: data.name,
+    platform: data.platform,
+    rate: data.rate,
+  };
+  return responseData;
 }

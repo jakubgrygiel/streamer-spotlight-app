@@ -1,4 +1,4 @@
-import { IStreamer } from "@/types/data-types";
+import { IStreamer } from "@/types/types";
 import UserAvatarWithBg from "../ui/UserAvatarWithBg";
 import PlatformLogo from "../card/PlatformLogo";
 import Rating from "../ui/Rating";
@@ -46,7 +46,7 @@ export default function Profile({ data }: IProfileProps) {
             ) : (
               <span></span>
             )}
-            <Rating id={data?._id} rate={data?.rate} />
+            <Rating id={data?.id} rate={data?.rate} />
           </div>
         </div>
       </div>

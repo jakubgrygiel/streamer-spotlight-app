@@ -1,4 +1,4 @@
-import { IStreamer } from "@/types/data-types";
+import { IStreamer } from "@/types/types";
 import Image from "next/image";
 
 interface IUserAvatarWithBgProps {

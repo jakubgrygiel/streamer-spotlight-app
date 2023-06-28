@@ -11,6 +11,7 @@ export default function Button({ clickFn, text, isMain }: IButtonProps) {
     e.preventDefault();
     clickFn();
   }
+
   return (
     <button
       onClick={handleClick}

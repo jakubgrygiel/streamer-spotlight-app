@@ -10,7 +10,7 @@ import useDropdownInput from "@/hooks/useDropdownInput";
 import ModalWrapper from "../layout/modals/ModalWrapper";
 import ModalTitleWrapper from "./ModalTitleWrapper";
 import axios from "axios";
-import { TPlatform } from "@/types/data-types";
+import { TPlatform } from "@/types/types";
 import { useContext } from "react";
 import { DataCtx } from "@/context/data-context";
 import { UiCtx } from "@/context/ui-context";

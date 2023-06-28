@@ -1,5 +1,5 @@
 export interface IStreamer {
-  _id: string;
+  id: string;
   name: string;
   description: string;
   avatar: string;

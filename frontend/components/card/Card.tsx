@@ -1,4 +1,4 @@
-import { IStreamer } from "@/types/data-types";
+import { IStreamer } from "@/types/types";
 import PlatformLogo from "./PlatformLogo";
 import Rating from "../ui/Rating";
 import OpenProfileBtn from "./OpenProfileBtn";
@@ -35,8 +35,8 @@ export default function Card({ data }: ICardProps) {
           </p>
         </div>
         <div className="flex justify-between">
-          <Rating id={data._id} rate={data.rate} />
-          <OpenProfileBtn id={data._id} />
+          <Rating id={data.id} rate={data.rate} />
+          <OpenProfileBtn id={data.id} />
         </div>
       </div>
     </div>

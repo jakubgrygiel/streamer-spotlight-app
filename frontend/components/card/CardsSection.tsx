@@ -1,4 +1,4 @@
-import { IStreamer } from "@/types/data-types";
+import { IStreamer } from "@/types/types";
 import Card from "./Card";
 import LoadingSection from "../ui/LoadingSection";
 import { useContext } from "react";
@@ -13,7 +13,7 @@ export default function CardsSection() {
       {streamers ? (
         <div className="grid grid-cols-4 gap-6 w-full 2xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-1 md:gap-4 ">
           {streamers.map((item: IStreamer) => (
-            <Card key={item._id} data={item} />
+            <Card key={item.id} data={item} />
           ))}
         </div>
       ) : (
