@@ -17,7 +17,7 @@ export default function Card({ data }: ICardProps) {
   return (
     <div
       ref={cardRef}
-      className={`flex flex-col justify-between w-full bg-[var(--bg-secondary)] rounded-xl  border border-[var(--bg-light)] transition-opacity duration-300 ${
+      className={`flex flex-col justify-between w-full bg-[var(--bg-secondary)] rounded-xl border border-[var(--bg-light)] transition-opacity duration-300 ${
         isVisible ? "opacity-100" : "opacity-0"
       }`}
     >

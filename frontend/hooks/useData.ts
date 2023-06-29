@@ -6,7 +6,7 @@ import { socket } from "@/pages/_app";
 import { socketGetDataWhenServerIsUpdated } from "@/services/socket";
 
 export default function useData() {
-  const { data, sendRequest } = useFetch(API_URL);
+  const { data, error, sendRequest } = useFetch(API_URL);
   const [streamers, setStreamers] = useState<IStreamer[] | undefined>();
 
   useEffect(() => {
@@ -25,5 +25,5 @@ export default function useData() {
     setStreamers(newData);
   }
 
-  return { streamers };
+  return { streamers, error };
 }

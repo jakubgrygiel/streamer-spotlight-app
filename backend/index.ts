@@ -33,7 +33,6 @@ app.get("/", (req: Request, res: Response) => {
 app.use("/streamers", streamerRoutes);
 
 io.on("connection", (socket) => {
-  console.log(socket.id);
   socket.on("dataIsUpdated", async (isSend) => {
     const streamers: IStreamerDB[] = await Streamer.find();
     const data = streamers.map((streamer) => prepareDataForClient(streamer));
@@ -47,7 +46,6 @@ io.on("connection", (socket) => {
     await fillDatabaseIfEmpty();
 
     httpServer.listen(PORT, () => console.log(`Running on port ${PORT}`));
-    // app.listen(PORT, () => console.log(`Running on port ${PORT}`));
   } catch (error: any) {
     console.error("Server error:", error.message);
   }

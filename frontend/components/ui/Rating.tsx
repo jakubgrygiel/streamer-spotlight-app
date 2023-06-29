@@ -16,7 +16,7 @@ export default function Rating({ id, votes }: IRatingProps) {
     <div className="flex justify-between items-center gap-2">
       <button
         aria-label="like"
-        className=" h-6 w-6"
+        className=" h-6 w-6 transition-opacity hover:opacity-70"
         onClick={() => handleClick("upvote")}
       >
         <img
@@ -34,7 +34,7 @@ export default function Rating({ id, votes }: IRatingProps) {
       )}
       <button
         aria-label="dislike"
-        className=" h-6 w-6"
+        className=" h-6 w-6 transition-opacity hover:opacity-70"
         onClick={() => handleClick("downvote")}
       >
         <img

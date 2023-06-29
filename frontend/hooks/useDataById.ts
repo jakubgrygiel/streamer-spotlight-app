@@ -9,7 +9,7 @@ import { socketGetDataWhenServerIsUpdated } from "@/services/socket";
 export type TVote = "upvote" | "downvote";
 
 export default function useDataById(id: string | undefined) {
-  const { data, sendRequest } = useFetch(API_URL);
+  const { data, error, sendRequest } = useFetch(API_URL);
   const [streamer, setStreamer] = useState<IStreamer | undefined>();
 
   useEffect(() => {
@@ -24,12 +24,11 @@ export default function useDataById(id: string | undefined) {
     socketGetDataWhenServerIsUpdated(updateStreamerBySocket);
   }, [socket]);
 
-  async function updateData<K extends keyof IStreamer>(
+  function updateData<K extends keyof IStreamer>(
     key: K,
     newValue: IStreamer[K] | TVote
   ) {
     if (key === "votes") {
-      console.log(newValue);
       sendRequest("put", `${id}/vote`, { type: newValue });
     }
   }
@@ -41,5 +40,5 @@ export default function useDataById(id: string | undefined) {
     setStreamer(updatedStreamer);
   }
 
-  return { streamer, updateData };
+  return { streamer, error, updateData };
 }
