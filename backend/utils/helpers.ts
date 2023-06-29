@@ -13,3 +13,8 @@ export const wrapper = async (
       .send(`[ERROR] The operation failed: ${error.message}`);
   }
 };
+
+export function log(message: string) {
+  const timestamp = new Date().toLocaleString();
+  console.log(`[${timestamp}] ${message}`);
+}

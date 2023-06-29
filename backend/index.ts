@@ -7,6 +7,7 @@ import { Server } from "socket.io";
 import { createServer } from "http";
 import Streamer from "./models/streamer.model";
 import { IStreamerDB } from "./types/types";
+import { log } from "./utils/helpers";
 
 const PORT = 8000;
 const DB_URL = "mongodb://localhost:27017";
@@ -37,6 +38,7 @@ io.on("connection", (socket) => {
     const streamers: IStreamerDB[] = await Streamer.find();
     const data = streamers.map((streamer) => prepareDataForClient(streamer));
     io.emit("data", data);
+    log("The data has been updated. Updated data sent to the client.");
   });
 });
 
@@ -45,8 +47,9 @@ io.on("connection", (socket) => {
     await mongoose.connect(DB_URL);
     await fillDatabaseIfEmpty();
 
-    httpServer.listen(PORT, () => console.log(`Running on port ${PORT}`));
+    httpServer.listen(PORT, () => log(`Running on port ${PORT}`));
   } catch (error: any) {
-    console.error("Server error:", error.message);
+    let message = `"Server error:" ${error.message}`;
+    log(message);
   }
 })();
