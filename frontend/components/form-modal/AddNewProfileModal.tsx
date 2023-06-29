@@ -9,7 +9,7 @@ import DropdownPlatform from "./DropdownPlatform";
 import ModalWrapper from "../layout/modals/ModalWrapper";
 import ModalTitleWrapper from "./ModalTitleWrapper";
 import { TPlatform } from "@/models/Streamer";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UiCtx } from "@/context/ui-context";
 import useSendNewData from "@/hooks/useSendNewData";
 
@@ -24,7 +24,8 @@ interface IFormData {
 
 export default function AddNewProfileModal() {
   const { closeModal } = useContext(UiCtx);
-  const { sendNewData } = useSendNewData();
+  const { errorCode, sendNewData } = useSendNewData();
+
   const {
     value: nameValue,
     isInvalid: nameIsInvalid,
@@ -61,6 +62,12 @@ export default function AddNewProfileModal() {
     handleBlur: handleBlurPlatform,
   } = useInput();
 
+  useEffect(() => {
+    if (errorCode !== 0 && errorCode !== 409) {
+      closeModal();
+    }
+  }, [errorCode]);
+
   async function submitForm() {
     touchEveryInput();
     const formIsValid =
@@ -72,7 +79,6 @@ export default function AddNewProfileModal() {
     if (formIsValid) {
       const data = prepareData();
       await sendNewData(data);
-      closeModal();
     }
   }
 
@@ -108,15 +114,22 @@ export default function AddNewProfileModal() {
         w-full p-6 py-2 overflow-hidden"
         >
           <div className="flex flex-col justify-between gap-4 w-full py-4 overflow-hidden overflow-y-auto">
-            <TextInput
-              id="name"
-              label="Name"
-              value={nameValue}
-              placeholder="e.g. streamer1234"
-              hasError={nameHasError}
-              handleChange={handleChangeName}
-              handleBlur={handleBlurName}
-            />
+            <div className="relative w-full">
+              <TextInput
+                id="name"
+                label="Name"
+                value={nameValue}
+                placeholder="e.g. streamer1234"
+                hasError={nameHasError}
+                handleChange={handleChangeName}
+                handleBlur={handleBlurName}
+              />
+              <div className={`dropdown ${errorCode === 409 && "grid-rows-1"}`}>
+                <span className=" text-xs text-[var(--red)] overflow-hidden">
+                  User with this name already exists on this platform
+                </span>
+              </div>
+            </div>
             <div
               className="z-20 flex justify-between items-center 
             gap-3 w-full"

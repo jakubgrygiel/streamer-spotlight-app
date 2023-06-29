@@ -13,8 +13,10 @@ const router = Router();
 router.get("/", (req: Request, res: Response) =>
   wrapper(req, res, getAllStreamers)
 );
-router.post("/", [streamer.empty], (req: Request, res: Response) =>
-  wrapper(req, res, addStreamer)
+router.post(
+  "/",
+  [streamer.empty, streamer.profileExists],
+  (req: Request, res: Response) => wrapper(req, res, addStreamer)
 );
 
 router.get("/:streamerId", [streamer.exists], (req: Request, res: Response) =>

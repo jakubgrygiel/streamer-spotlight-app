@@ -9,6 +9,18 @@ export const streamer = {
 
     next();
   },
+  profileExists: async (req: Request, res: Response, next: NextFunction) => {
+    const { name, platform } = req.body;
+    const existingStreamer = await Streamer.findOne({ name, platform });
+
+    if (existingStreamer) {
+      return res.status(409).json({
+        error: `Profile with name "${name}" already exists on platform "${platform}"`,
+      });
+    }
+
+    next();
+  },
   empty: async (req: Request, res: Response, next: NextFunction) => {
     const { body } = req;
 

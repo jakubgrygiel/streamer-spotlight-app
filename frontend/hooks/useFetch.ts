@@ -7,6 +7,7 @@ export type THttpMethod = "get" | "post" | "put";
 export default function useFetch(url: string) {
   const [data, setData] = useState();
   const [error, setError] = useState(false);
+  const [errorCode, setErrorCode] = useState(0);
 
   async function sendRequest(method: THttpMethod, id?: string, data?: any) {
     try {
@@ -19,6 +20,7 @@ export default function useFetch(url: string) {
       };
       const response = await axios(config);
       setError(false);
+      setErrorCode(200);
       if (method === "get") {
         setData(response.data);
       } else {
@@ -29,6 +31,7 @@ export default function useFetch(url: string) {
       setError(true);
       if (err.response) {
         console.error("Error:", err.response.data);
+        setErrorCode(err.response.status);
       } else if (err.request) {
         console.error("Error:", err.request);
       } else {
@@ -37,5 +40,5 @@ export default function useFetch(url: string) {
     }
   }
 
-  return { data, error, sendRequest };
+  return { data, error, errorCode, sendRequest };
 }
