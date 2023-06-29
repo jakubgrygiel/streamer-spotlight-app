@@ -17,7 +17,7 @@ export default function Header() {
           <img src="assets/icons/logo.svg" alt="app logo" />
           <img
             src="assets/icons/logo-text.svg"
-            alt="app name StreamRate"
+            alt="app name StreamVote"
             className="md:hidden"
           />
         </Link>
