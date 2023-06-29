@@ -22,7 +22,7 @@ router.get("/:streamerId", [streamer.exists], (req: Request, res: Response) =>
 );
 router.put(
   "/:streamerId/vote",
-  [streamer.exists],
+  [streamer.updateType, streamer.exists],
   (req: Request, res: Response) => wrapper(req, res, updateStreamer)
 );
 

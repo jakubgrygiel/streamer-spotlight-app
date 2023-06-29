@@ -132,6 +132,11 @@ export default function AddNewProfileModal() {
                 handleChange={handleChangeImage}
               />
             </div>
+            <DropdownPlatform
+              value={platformValue}
+              hasError={platformHasError}
+              handleChange={handleChangePlatform}
+            />
             <TextareaInput
               id="description"
               label="Description"
@@ -142,11 +147,7 @@ export default function AddNewProfileModal() {
               handleChange={handleChangeDescription}
               handleBlur={handleBlurDescription}
             />
-            <DropdownPlatform
-              value={platformValue}
-              hasError={platformHasError}
-              handleChange={handleChangePlatform}
-            />
+
             <div className="flex justify-between gap-3 mt-2">
               <CreateProfileBtn clickFn={submitForm} />
               <CancelBtn />

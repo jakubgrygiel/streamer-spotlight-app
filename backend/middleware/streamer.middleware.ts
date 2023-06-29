@@ -20,9 +20,16 @@ export const streamer = {
       const streamer = new Streamer(body);
       await streamer.validate();
     } catch (err: any) {
-      res.status(400).json(err.message);
-      return;
+      return res.status(400).json(err.message);
     }
+
+    next();
+  },
+  updateType: async (req: Request, res: Response, next: NextFunction) => {
+    const { body } = req;
+
+    if (!body.type || !["upvote", "downvote"].includes(body.type))
+      return res.status(400).json("Empty request body");
 
     next();
   },

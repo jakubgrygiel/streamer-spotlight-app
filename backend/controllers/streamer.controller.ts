@@ -16,7 +16,7 @@ export async function addStreamer(req: Request, res: Response) {
   const savedStreamer = await newStreamer.save();
   const responseData: IStreamerClient = prepareDataForClient(savedStreamer);
 
-  res.status(200).json(responseData);
+  res.status(201).json(responseData);
 }
 
 export async function getStreamer(req: Request, res: Response) {
@@ -32,7 +32,9 @@ export async function updateStreamer(req: Request, res: Response) {
   const { streamerId } = req.params;
   const { body } = req;
 
-  const votesValue = body.type === "upvote" ? 1 : -1;
+  let votesValue = 0;
+  if (body.type === "upvote") votesValue = 1;
+  if (body.type === "downvote") votesValue = -1;
 
   Streamer.findByIdAndUpdate(
     streamerId,
