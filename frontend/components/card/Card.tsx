@@ -3,9 +3,8 @@ import PlatformLogo from "./PlatformLogo";
 import Rating from "../ui/Rating";
 import OpenProfileBtn from "./OpenProfileBtn";
 import useObserver from "@/hooks/useObserver";
-import { useContext, useRef } from "react";
+import { useRef } from "react";
 import UserAvatarWithBg from "../ui/UserAvatarWithBg";
-import { DataCtx } from "@/context/data-context";
 
 interface ICardProps {
   data: IStreamer;
@@ -14,19 +13,11 @@ interface ICardProps {
 export default function Card({ data }: ICardProps) {
   const cardRef = useRef<HTMLDivElement | null>(null);
   const { isVisible } = useObserver(cardRef);
-  const { updateData } = useContext(DataCtx);
-
-  function handleVote(val: -1 | 1, id?: string) {
-    if (data && id) {
-      const rate = data.votes + val;
-      updateData("votes", rate, id);
-    }
-  }
 
   return (
     <div
       ref={cardRef}
-      className={`flex flex-col justify-between w-full bg-[var(--bg-secondary)] rounded-xl  border border-[var(--bg-light)] transition-opacity duration-300 ${
+      className={`flex flex-col justify-between w-full bg-[var(--bg-secondary)] rounded-xl border border-[var(--bg-light)] transition-opacity duration-300 ${
         isVisible ? "opacity-100" : "opacity-0"
       }`}
     >
@@ -44,7 +35,7 @@ export default function Card({ data }: ICardProps) {
           </p>
         </div>
         <div className="flex justify-between">
-          <Rating id={data.id} votes={data.votes} voteFunc={handleVote} />
+          <Rating id={data.id} votes={data.votes} />
           <OpenProfileBtn id={data.id} />
         </div>
       </div>

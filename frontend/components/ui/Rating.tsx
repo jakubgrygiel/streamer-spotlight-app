@@ -1,19 +1,23 @@
+import useDataById, { TVote } from "@/hooks/useDataById";
+
 interface IRatingProps {
   id?: string;
   votes?: number;
-  voteFunc: (val: -1 | 1, id: string) => void;
 }
 
-export default function Rating({ id, votes, voteFunc }: IRatingProps) {
-  function handleClick(val: -1 | 1) {
-    if (id) voteFunc(val, id);
+export default function Rating({ id, votes }: IRatingProps) {
+  const { updateData } = useDataById(id);
+
+  function handleClick(type: TVote) {
+    updateData("votes", type);
   }
+
   return (
     <div className="flex justify-between items-center gap-2">
       <button
         aria-label="like"
-        className=" h-6 w-6"
-        onClick={() => handleClick(1)}
+        className=" h-6 w-6 transition-opacity hover:opacity-70"
+        onClick={() => handleClick("upvote")}
       >
         <img
           src="assets/icons/icon-thumb-up.svg"
@@ -30,8 +34,8 @@ export default function Rating({ id, votes, voteFunc }: IRatingProps) {
       )}
       <button
         aria-label="dislike"
-        className=" h-6 w-6"
-        onClick={() => handleClick(-1)}
+        className=" h-6 w-6 transition-opacity hover:opacity-70"
+        onClick={() => handleClick("downvote")}
       >
         <img
           src="assets/icons/icon-thumb-down.svg"

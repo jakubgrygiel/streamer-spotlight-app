@@ -23,12 +23,6 @@ export async function getStreamer(req: Request, res: Response) {
   const { streamerId } = req.params;
   const streamer = await Streamer.findById(streamerId);
 
-  if (!streamer) {
-    return res
-      .status(404)
-      .json({ message: "Streamer with this id does not exist" });
-  }
-
   const responseData: IStreamerClient = prepareDataForClient(streamer);
 
   res.status(200).json(responseData);
@@ -47,10 +41,6 @@ export async function updateStreamer(req: Request, res: Response) {
   ).then((updatedStreamer) => {
     if (updatedStreamer) {
       res.status(200).json(updatedStreamer);
-    } else {
-      return res
-        .status(404)
-        .json({ message: "Streamer with this id does not exist" });
     }
   });
 }

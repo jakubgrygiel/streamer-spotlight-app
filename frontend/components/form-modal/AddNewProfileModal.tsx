@@ -6,14 +6,12 @@ import CreateProfileBtn from "./CreateProfileBtn";
 import DropdownAvatar from "./DropdownAvatar";
 import DropdownBg from "./DropdownBg";
 import DropdownPlatform from "./DropdownPlatform";
-import useDropdownInput from "@/hooks/useDropdownInput";
 import ModalWrapper from "../layout/modals/ModalWrapper";
 import ModalTitleWrapper from "./ModalTitleWrapper";
 import { TPlatform } from "@/models/Streamer";
 import { useContext } from "react";
-import { DataCtx } from "@/context/data-context";
 import { UiCtx } from "@/context/ui-context";
-import useSendData from "@/hooks/useSendData";
+import useSendNewData from "@/hooks/useSendNewData";
 
 interface IFormData {
   name: string;
@@ -25,9 +23,8 @@ interface IFormData {
 }
 
 export default function AddNewProfileModal() {
-  const { getData } = useContext(DataCtx);
   const { closeModal } = useContext(UiCtx);
-  const { sendData } = useSendData();
+  const { sendNewData } = useSendNewData();
   const {
     value: nameValue,
     isInvalid: nameIsInvalid,
@@ -48,21 +45,21 @@ export default function AddNewProfileModal() {
     hasError: avatarHasError,
     handleChange: handleChangeAvatar,
     handleBlur: handleBlurAvatar,
-  } = useDropdownInput();
+  } = useInput();
   const {
     value: imageValue,
     isInvalid: imageIsInvalid,
     hasError: imageHasError,
     handleChange: handleChangeImage,
     handleBlur: handleBlurImage,
-  } = useDropdownInput();
+  } = useInput();
   const {
     value: platformValue,
     isInvalid: platformIsInvalid,
     hasError: platformHasError,
     handleChange: handleChangePlatform,
     handleBlur: handleBlurPlatform,
-  } = useDropdownInput();
+  } = useInput();
 
   async function submitForm() {
     touchEveryInput();
@@ -74,8 +71,7 @@ export default function AddNewProfileModal() {
       !platformIsInvalid;
     if (formIsValid) {
       const data = prepareData();
-      await sendData(data);
-      getData(); // update data on the home page after submitting form
+      await sendNewData(data);
       closeModal();
     }
   }
