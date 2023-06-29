@@ -1,5 +1,4 @@
 import Layout from "@/components/layout/Layout";
-import { DataCtxProvider } from "@/context/data-context";
 import { UiCtxProvider } from "@/context/ui-context";
 import { SERVER_URL } from "@/services/API";
 import "@/styles/globals.css";
@@ -10,12 +9,10 @@ export const socket = io(SERVER_URL);
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <DataCtxProvider>
-      <UiCtxProvider>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </UiCtxProvider>
-    </DataCtxProvider>
+    <UiCtxProvider>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </UiCtxProvider>
   );
 }

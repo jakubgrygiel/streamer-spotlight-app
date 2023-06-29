@@ -1,15 +1,10 @@
 import { IStreamer } from "@/models/Streamer";
 import Card from "./Card";
 import LoadingSection from "../ui/LoadingSection";
-import { useContext, useEffect } from "react";
-import { DataCtx } from "@/context/data-context";
+import useData from "@/hooks/useData";
 
 export default function CardsSection() {
-  const { streamers, getData } = useContext(DataCtx);
-
-  useEffect(() => {
-    getData();
-  }, []);
+  const { streamers } = useData();
 
   return (
     <section className="flex flex-col gap-8 w-full py-6 md:gap-6 md:py-3">

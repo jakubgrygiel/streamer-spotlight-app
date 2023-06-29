@@ -1,3 +1,4 @@
+import { socketInfoServerIsUpdated } from "@/services/socket";
 import axios, { AxiosError, AxiosRequestConfig } from "axios";
 import { useState } from "react";
 
@@ -16,9 +17,10 @@ export default function useFetch(url: string) {
         data,
       };
       const response = await axios(config);
-
       if (method === "get") {
         setData(response.data);
+      } else {
+        socketInfoServerIsUpdated();
       }
     } catch (error) {
       const err = error as AxiosError;

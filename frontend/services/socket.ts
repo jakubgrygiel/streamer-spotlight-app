@@ -1,9 +1,14 @@
+import { IStreamer } from "@/models/Streamer";
 import { socket } from "@/pages/_app";
 
-socket.on("connect", () => {
-  console.log(socket.id);
-});
+export function socketGetDataWhenServerIsUpdated(
+  callback: (newData: IStreamer[]) => void
+) {
+  socket.on("data", (newData: IStreamer[]) => {
+    callback(newData);
+  });
+}
 
-export function socketDataUpdated() {
-  socket.emit("newData", true);
+export function socketInfoServerIsUpdated() {
+  socket.emit("dataIsUpdated", true);
 }

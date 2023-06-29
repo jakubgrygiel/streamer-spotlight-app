@@ -5,22 +5,9 @@ import Rating from "../ui/Rating";
 
 interface IProfileProps {
   data?: IStreamer;
-  updateData: <K extends keyof IStreamer>(
-    key: K,
-    newValue: IStreamer[K],
-    id: string
-  ) => void;
 }
 
-export default function Profile({ data, updateData }: IProfileProps) {
-  function handleVote(val: -1 | 1) {
-    if (data) {
-      const rate = data.votes + val;
-      updateData("votes", rate, data.id);
-    }
-  }
-  console.log(data);
-
+export default function Profile({ data }: IProfileProps) {
   return (
     <section className="w-full mb-6 bg-[var(--bg-secondary)] rounded-xl border border-[var(--bg-light)]">
       <UserAvatarWithBg data={data} />
@@ -40,7 +27,7 @@ export default function Profile({ data, updateData }: IProfileProps) {
           </div>
 
           {data ? (
-            <p className="text-[var(--text-main)] md:mt-4 animate-fade animate-duration-800">
+            <p className="text-[var(--text-main)] max-w-3xl md:mt-4 animate-fade animate-duration-800">
               {data.description}
             </p>
           ) : (
@@ -59,7 +46,7 @@ export default function Profile({ data, updateData }: IProfileProps) {
             ) : (
               <span></span>
             )}
-            <Rating id={data?.id} votes={data?.votes} voteFunc={handleVote} />
+            <Rating id={data?.id} votes={data?.votes} />
           </div>
         </div>
       </div>

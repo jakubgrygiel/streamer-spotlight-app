@@ -4,19 +4,17 @@ import { useRouter } from "next/router";
 
 export default function ProfilePage() {
   const router = useRouter();
-  const { streamer, updateData } = useDataById(
-    router.query.streamerId as string
-  );
+  const { streamer } = useDataById(router.query.streamerId as string);
   if (!router.query.streamerId) {
     return (
       <>
-        <Profile updateData={updateData} />
+        <Profile />
       </>
     );
   }
   return (
     <>
-      <Profile data={streamer} updateData={updateData} />
+      <Profile data={streamer} />
     </>
   );
 }

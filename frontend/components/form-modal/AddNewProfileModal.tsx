@@ -12,7 +12,7 @@ import ModalTitleWrapper from "./ModalTitleWrapper";
 import { TPlatform } from "@/models/Streamer";
 import { useContext } from "react";
 import { UiCtx } from "@/context/ui-context";
-import useSendData from "@/hooks/useSendData";
+import useSendNewData from "@/hooks/useSendNewData";
 
 interface IFormData {
   name: string;
@@ -25,7 +25,7 @@ interface IFormData {
 
 export default function AddNewProfileModal() {
   const { closeModal } = useContext(UiCtx);
-  const { sendData } = useSendData();
+  const { sendNewData } = useSendNewData();
   const {
     value: nameValue,
     isInvalid: nameIsInvalid,
@@ -72,7 +72,7 @@ export default function AddNewProfileModal() {
       !platformIsInvalid;
     if (formIsValid) {
       const data = prepareData();
-      await sendData(data);
+      await sendNewData(data);
       // getData(); // update data on the home page after submitting form
       closeModal();
     }

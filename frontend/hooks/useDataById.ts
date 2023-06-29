@@ -2,44 +2,44 @@ import { useEffect, useState } from "react";
 import useFetch from "./useFetch";
 import { IStreamer } from "@/models/Streamer";
 import API_URL from "@/services/API";
-import { updateVote } from "@/utils/crud";
+import { socket } from "@/pages/_app";
+import { getDataById } from "@/utils/crud";
+import { socketGetDataWhenServerIsUpdated } from "@/services/socket";
 
-export default function useDataById(id: string) {
+export type TVote = "upvote" | "downvote";
+
+export default function useDataById(id: string | undefined) {
   const { data, sendRequest } = useFetch(API_URL);
   const [streamer, setStreamer] = useState<IStreamer | undefined>();
 
   useEffect(() => {
-    if (id) getData();
+    if (id) sendRequest("get", id);
   }, [id]);
 
   useEffect(() => {
     setStreamer(data);
   }, [data]);
 
-  function getData() {
-    sendRequest("get", id);
-  }
+  useEffect(() => {
+    socketGetDataWhenServerIsUpdated(updateStreamerBySocket);
+  }, [socket]);
 
   async function updateData<K extends keyof IStreamer>(
     key: K,
-    newValue: IStreamer[K],
-    id: string
+    newValue: IStreamer[K] | TVote
   ) {
-    if (streamer && id === streamer.id) {
-      let streamerCopy = { ...streamer };
-      streamerCopy[key] = newValue;
-      setStreamer(streamerCopy);
-
-      if (key === "votes") {
-        updateVote(
-          streamer[key] as number,
-          streamerCopy[key] as number,
-          id,
-          sendRequest
-        );
-      }
+    if (key === "votes") {
+      console.log(newValue);
+      sendRequest("put", `${id}/vote`, { type: newValue });
     }
   }
 
-  return { streamer, getData, updateData };
+  function updateStreamerBySocket(newData: IStreamer[]) {
+    if (!id) return;
+    const updatedStreamer = getDataById(newData, id);
+    if (!updatedStreamer) return;
+    setStreamer(updatedStreamer);
+  }
+
+  return { streamer, updateData };
 }

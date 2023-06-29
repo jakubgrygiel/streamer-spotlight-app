@@ -34,7 +34,7 @@ app.use("/streamers", streamerRoutes);
 
 io.on("connection", (socket) => {
   console.log(socket.id);
-  socket.on("newData", async (isSend) => {
+  socket.on("dataIsUpdated", async (isSend) => {
     const streamers: IStreamerDB[] = await Streamer.find();
     const data = streamers.map((streamer) => prepareDataForClient(streamer));
     io.emit("data", data);
