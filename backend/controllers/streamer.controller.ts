@@ -10,7 +10,7 @@ export async function getAllStreamers(req: Request, res: Response) {
     prepareDataForClient(streamer)
   );
 
-  log("Streamers data send");
+  log("Streamers data has been sent");
   res.status(200).json(responseData);
 }
 
@@ -28,7 +28,7 @@ export async function getStreamer(req: Request, res: Response) {
   const streamer = await Streamer.findById(streamerId);
   const responseData: IStreamerClient = prepareDataForClient(streamer);
 
-  log(`Streamer data with id:${responseData.id} sent`);
+  log(`Streamer data with id:${responseData.id} has been sent`);
   res.status(200).json(responseData);
 }
 
@@ -46,7 +46,7 @@ export async function updateStreamer(req: Request, res: Response) {
     { new: true }
   ).then((updatedStreamer) => {
     if (updatedStreamer) {
-      log(`Streamer data with id:${updatedStreamer.id} updated`);
+      log(`Streamer data with id:${updatedStreamer.id} has been updated`);
       res.status(200).json(updatedStreamer);
     }
   });

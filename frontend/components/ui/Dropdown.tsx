@@ -63,7 +63,7 @@ export default function Dropdown({
         </span>
         <img
           src="assets/icons/icon-arrow-down.svg"
-          alt=""
+          alt="arrow down icon"
           className={` transition-transform ${isOpen && "rotate-180"}`}
         />
       </button>

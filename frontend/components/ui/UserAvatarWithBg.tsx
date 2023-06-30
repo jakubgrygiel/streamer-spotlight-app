@@ -14,7 +14,7 @@ export default function UserAvatarWithBg({ data }: IUserAvatarWithBgProps) {
           alt="background image"
           fill
           className=" rounded-t-xl animate-fade animate-duration-800 object-cover"
-          sizes="100vw"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
       ) : (
         <div className="absolute inset-0 bg-[var(--bg-light2)] rounded-t-xl animate-pulse"></div>
@@ -24,13 +24,13 @@ export default function UserAvatarWithBg({ data }: IUserAvatarWithBgProps) {
         {data ? (
           <img
             src={`assets/images/${data.avatar}.webp`}
-            alt=""
+            alt="avatar image"
             className="absolute h-[100px] w-[100px] rounded-full animate-fade animate-duration-800"
           />
         ) : (
           <img
             src={`assets/images/user-loading.webp`}
-            alt=""
+            alt="avatar placeholder"
             className="absolute h-[100px] w-[100px] rounded-full"
           />
         )}

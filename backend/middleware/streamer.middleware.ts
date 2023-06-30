@@ -49,7 +49,7 @@ export const streamer = {
     const { body } = req;
 
     if (!body.type || !["upvote", "downvote"].includes(body.type)) {
-      let message = "Empty request body";
+      let message = "Empty or wrong request body";
       log(message);
       return res.status(400).json(message);
     }

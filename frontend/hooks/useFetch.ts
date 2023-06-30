@@ -19,8 +19,10 @@ export default function useFetch(url: string) {
         data,
       };
       const response = await axios(config);
+
       setError(false);
       setErrorCode(200);
+
       if (method === "get") {
         setData(response.data);
       } else {
@@ -29,6 +31,7 @@ export default function useFetch(url: string) {
     } catch (error) {
       const err = error as AxiosError;
       setError(true);
+
       if (err.response) {
         console.error("Error:", err.response.data);
         setErrorCode(err.response.status);
