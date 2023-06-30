@@ -124,11 +124,11 @@ export default function AddNewProfileModal() {
                 handleChange={handleChangeName}
                 handleBlur={handleBlurName}
               />
-              <div className={`dropdown ${errorCode === 409 && "grid-rows-1"}`}>
+              {errorCode === 409 && (
                 <span className=" text-xs text-[var(--red)] overflow-hidden">
                   User with this name already exists on this platform
                 </span>
-              </div>
+              )}
             </div>
             <div
               className="z-20 flex justify-between items-center 
