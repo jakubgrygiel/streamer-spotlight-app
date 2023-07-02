@@ -50,13 +50,13 @@ To run the application, follow these steps:
 
 1. Open Docker Desktop to start the Docker service.
 2. Navigate to the backend folder in your terminal.
-3. Run the following command to start the backend server using Docker Compose. This will start the MongoDB database and the backend server.
+3. Run the following command to start the backend server using Docker Compose. This will start the MongoDB database.
 
 ```bash
 docker-compose up -d
 ```
 
-4. Once the docker is up and running, open a new terminal window/tab and navigate to the backend folder again.
+4. Once the docker is up and running, navigate to the backend folder again.
 5. Install the required dependencies and start the backend server by running the following commands:
 
 ```bash
